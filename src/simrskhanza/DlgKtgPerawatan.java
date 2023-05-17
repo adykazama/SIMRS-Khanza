@@ -21,7 +21,6 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
@@ -88,23 +87,28 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
         TKd.setDocument(new batasInput((byte)5).getKata(TKd));
         TNm.setDocument(new batasInput((byte)30).getKata(TNm));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        if(koneksiDB.cariCepat().equals("aktif")){
+        if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
             });
-        } 
-        try {
-            ps=koneksi.prepareStatement(
-                "select * from kategori_perawatan where kd_kategori like ? "+
-                "or nm_kategori like ? ");
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+        }         
     }
 
     /** This method is called from within the constructor to
@@ -148,7 +152,7 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kategori Perawatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kategori Perawatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -349,7 +353,7 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
         jLabel3.setText("Kode Kategori :");
         jLabel3.setName("jLabel3"); // NOI18N
         panelGlass2.add(jLabel3);
-        jLabel3.setBounds(0, 12, 100, 23);
+        jLabel3.setBounds(0, 12, 90, 23);
 
         jLabel4.setText("Nama Kategori :");
         jLabel4.setName("jLabel4"); // NOI18N
@@ -364,7 +368,7 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
             }
         });
         panelGlass2.add(TKd);
-        TKd.setBounds(104, 12, 80, 23);
+        TKd.setBounds(94, 12, 80, 23);
 
         TNm.setName("TNm"); // NOI18N
         TNm.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -396,12 +400,14 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
         }else if(TNm.getText().trim().equals("")){
             Valid.textKosong(TNm,"nama kategori");
         }else{
-            Sequel.menyimpan("kategori_perawatan","?,?","Kode Kategori",2,new String[]{
+            if(Sequel.menyimpantf("kategori_perawatan","?,?","Kode Kategori",2,new String[]{
                 TKd.getText(),TNm.getText()
-            });
-            tampil();
-            emptTeks();
-        }// TODO add your handling code here:
+            })==true){
+                tabMode.addRow(new Object[]{false,TKd.getText(),TNm.getText()});
+                LCount.setText(""+tabMode.getRowCount());
+                emptTeks();
+            }
+        }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
@@ -425,10 +431,13 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         for(i=0;i<tbKategori.getRowCount();i++){ 
             if(tbKategori.getValueAt(i,0).toString().equals("true")){
-                Sequel.meghapus("kategori_perawatan","kd_kategori",tbKategori.getValueAt(i,1).toString());
+                if(Sequel.meghapustf("kategori_perawatan","kd_kategori",tbKategori.getValueAt(i,1).toString())==true){
+                    tabMode.removeRow(i);
+                    i--;
+                }
             }
         } 
-        tampil();
+        LCount.setText(""+tabMode.getRowCount());
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -446,11 +455,15 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
         }else if(TNm.getText().trim().equals("")){
             Valid.textKosong(TNm,"nama kategori");
         }else{
-            Valid.editTable(tabMode,"kategori_perawatan","kd_kategori","?","kd_kategori=?,nm_kategori=?",3,new String[]{
+            if(Valid.editTabletf(tabMode,"kategori_perawatan","kd_kategori","?","kd_kategori=?,nm_kategori=?",3,new String[]{
                 TKd.getText(),TNm.getText(),tbKategori.getValueAt(tbKategori.getSelectedRow(),1).toString()
-            });
-            if(tabMode.getRowCount()!=0){tampil();}
-            emptTeks();
+            })==true){
+                if(tbKategori.getSelectedRow()!= -1){
+                    tbKategori.setValueAt(TKd.getText(),tbKategori.getSelectedRow(),1);
+                    tbKategori.setValueAt(TNm.getText(),tbKategori.getSelectedRow(),2);
+                }
+                emptTeks();
+            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -584,23 +597,36 @@ public final class DlgKtgPerawatan extends javax.swing.JDialog {
     private void tampil(){
         Valid.tabelKosong(tabMode);
         try{
-            ps.setString(1,"%"+TCari.getText().trim()+"%");
-            ps.setString(2,"%"+TCari.getText().trim()+"%");
-            rs=ps.executeQuery();
-            while(rs.next()){
-                tabMode.addRow(new Object[]{false,rs.getString(1),rs.getString(2)});
-             }
-        }catch(SQLException e){
+            ps=koneksi.prepareStatement(
+                "select * from kategori_perawatan where kd_kategori like ? "+
+                "or nm_kategori like ? ");
+            try {
+                ps.setString(1,"%"+TCari.getText().trim()+"%");
+                ps.setString(2,"%"+TCari.getText().trim()+"%");
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabMode.addRow(new Object[]{false,rs.getString(1),rs.getString(2)});
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                if(ps!=null){
+                    ps.close();
+                }
+            }                
+        }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabMode.getRowCount());
     }
 
     private void getData() {
-        int row=tbKategori.getSelectedRow();
-        if(row!= -1){
-            TKd.setText(tbKategori.getValueAt(row,1).toString());
-            TNm.setText(tbKategori.getValueAt(row,2).toString());
+        if(tbKategori.getSelectedRow()!= -1){
+            TKd.setText(tbKategori.getValueAt(tbKategori.getSelectedRow(),1).toString());
+            TNm.setText(tbKategori.getValueAt(tbKategori.getSelectedRow(),2).toString());
         }
     }
 

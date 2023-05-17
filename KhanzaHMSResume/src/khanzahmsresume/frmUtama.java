@@ -49,7 +49,7 @@ public class frmUtama extends javax.swing.JFrame {
         HTMLEditorKit kit = new HTMLEditorKit();
         LoadHTML.setEditorKit(kit);
         StyleSheet styleSheet = kit.getStyleSheet();
-        styleSheet.addRule(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#464646;}");
+        styleSheet.addRule(".isi td{border-right: 1px solid #e2e7dd;font: 8.5px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}");
         Document doc = kit.createDefaultDocument();
         LoadHTML.setDocument(doc);
     }
@@ -163,16 +163,16 @@ public class frmUtama extends javax.swing.JFrame {
         try {
             File g = new File("file.css");
             BufferedWriter bg = new BufferedWriter(new FileWriter(g));
-            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 11px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#464646;}");
+            bg.write(".isi td{border-right: 1px solid #e2e7dd;font: 11px tahoma;height:12px;border-bottom: 1px solid #e2e7dd;background: #ffffff;color:#323232;}");
             bg.close();
 
             File f = new File("resumemedis.html");
             BufferedWriter bw = new BufferedWriter(new FileWriter(f));
             bw.write(LoadHTML.getText().replaceAll(
                 "<head>","<head><link href=\"file.css\" rel=\"stylesheet\" type=\"text/css\" />")
-        );
-        bw.close();
-        Desktop.getDesktop().browse(f.toURI());
+            );
+            bw.close();
+            Desktop.getDesktop().browse(f.toURI());
         } catch (Exception e) {
             System.out.println("Notifikasi : "+e);
         }
@@ -429,7 +429,7 @@ public class frmUtama extends javax.swing.JFrame {
                                         "<td valign='top' width='1%' align='center'>:</td>"+
                                         "<td valign='top' width='75%'>"+
                                           "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
-                                             "<tr align='center'><td valign='top' width='5%' bgcolor='#fafff5'>No.</td><td valign='top' width='24%' bgcolor='#fafff5'>Kode</td><td valign='top' width='50%' bgcolor='#fafff5'>Nama Penyakit</td><td valign='top' width='23%' bgcolor='#fafff5'>Status</td></tr>"
+                                             "<tr align='center'><td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td><td valign='top' width='24%' bgcolor='#FFFAFA'>Kode</td><td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Penyakit</td><td valign='top' width='23%' bgcolor='#FFFAFA'>Status</td></tr>"
                                     );
                                     rs3.beforeFirst();
                                     w=1;
@@ -465,7 +465,7 @@ public class frmUtama extends javax.swing.JFrame {
                                         "<td valign='top' width='1%' align='center'>:</td>"+
                                         "<td valign='top' width='75%'>"+
                                           "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
-                                             "<tr align='center'><td valign='top' width='5%' bgcolor='#fafff5'>No.</td><td valign='top' width='24%' bgcolor='#fafff5'>Kode</td><td valign='top' width='50%' bgcolor='#fafff5'>Nama Prosedur</td><td valign='top' width='23%' bgcolor='#fafff5'>Status</td></tr>"
+                                             "<tr align='center'><td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td><td valign='top' width='24%' bgcolor='#FFFAFA'>Kode</td><td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Prosedur</td><td valign='top' width='23%' bgcolor='#FFFAFA'>Status</td></tr>"
                                     );
                                     rs3.beforeFirst();
                                     w=1;
@@ -500,12 +500,12 @@ public class frmUtama extends javax.swing.JFrame {
                                         "<td valign='top' width='75%'>"+
                                           "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                              "<tr align='center'>"+
-                                                "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                                "<td valign='top' width='10%' bgcolor='#fafff5'>Tanggal</td>"+
-                                                "<td valign='top' width='10%' bgcolor='#fafff5'>Suhu Badan</td>"+
-                                                "<td valign='top' width='10%' bgcolor='#fafff5'>Tensi</td>"+
-                                                "<td valign='top' width='32%' bgcolor='#fafff5'>Hasil Periksa</td>"+
-                                                "<td valign='top' width='33%' bgcolor='#fafff5'>Perkembangan</td>"+
+                                                "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                                "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                                "<td valign='top' width='10%' bgcolor='#FFFAFA'>Suhu Badan</td>"+
+                                                "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tensi</td>"+
+                                                "<td valign='top' width='32%' bgcolor='#FFFAFA'>Hasil Periksa</td>"+
+                                                "<td valign='top' width='33%' bgcolor='#FFFAFA'>Perkembangan</td>"+
                                              "</tr>"
                                     );
                                     rs3.beforeFirst();
@@ -549,12 +549,12 @@ public class frmUtama extends javax.swing.JFrame {
                                         "<td valign='top' width='75%'>"+
                                           "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                              "<tr align='center'>"+
-                                                "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                                "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                                "<td valign='top' width='10%' bgcolor='#fafff5'>Suhu Badan</td>"+
-                                                "<td valign='top' width='10%' bgcolor='#fafff5'>Tensi</td>"+
-                                                "<td valign='top' width='30%' bgcolor='#fafff5'>Hasil Periksa</td>"+
-                                                "<td valign='top' width='30%' bgcolor='#fafff5'>Perkembangan</td>"+
+                                                "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                                "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                                "<td valign='top' width='10%' bgcolor='#FFFAFA'>Suhu Badan</td>"+
+                                                "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tensi</td>"+
+                                                "<td valign='top' width='30%' bgcolor='#FFFAFA'>Hasil Periksa</td>"+
+                                                "<td valign='top' width='30%' bgcolor='#FFFAFA'>Perkembangan</td>"+
                                              "</tr>"
                                     );
                                     rs3.beforeFirst();
@@ -612,12 +612,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Tindakan Rawat Jalan Dokter</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='45%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Dokter</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='45%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Dokter</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -656,12 +656,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+                                        
                                         "<tr><td valign='top' colspan='4'>Tindakan Rawat Jalan Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+      
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='45%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Paramedis</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='45%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Paramedis</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -700,13 +700,13 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='5'>Tindakan Rawat Jalan Dokter & Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='25%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Dokter</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Paramedis</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='25%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Dokter</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Paramedis</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -746,12 +746,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Tindakan Rawat Inap Dokter</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='40%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Dokter</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='40%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Dokter</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -790,12 +790,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Tindakan Rawat Inap Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='40%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='20%' bgcolor='#fafff5'>Paramedis</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='40%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='20%' bgcolor='#FFFAFA'>Paramedis</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -834,13 +834,13 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='5'>Tindakan Rawat Inap Dokter & Paramedis</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='26%' bgcolor='#fafff5'>Nama Tindakan/Perawatan</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Dokter</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Paramedis</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='26%' bgcolor='#FFFAFA'>Nama Tindakan/Perawatan</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Dokter</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Paramedis</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -881,13 +881,13 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='5'>Penggunaan Kamar</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal Masuk</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggak Keluar</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Lama Inap</td>"+
-                                          "<td valign='top' width='35%' bgcolor='#fafff5'>Kamar</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Status</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal Masuk</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggak Keluar</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Lama Inap</td>"+
+                                          "<td valign='top' width='35%' bgcolor='#FFFAFA'>Kamar</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Status</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -937,12 +937,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Operasi/VK</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='50%' bgcolor='#fafff5'>Nama Tindakan</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Anastesi</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Tindakan</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Anastesi</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -954,55 +954,55 @@ public class frmUtama extends javax.swing.JFrame {
                                                 "<td valign='top'>"+rs3.getString("kode_paket")+"</td>"+
                                                 "<td valign='top'>"+rs3.getString("nm_perawatan")+" (");
                                         if(rs3.getDouble("biayaoperator1")>0){
-                                            htmlContent.append("Operator 1 : "+Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",rs3.getString("operator1"))+", ");
+                                            htmlContent.append("Operator 1 : "+Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs3.getString("operator1"))+", ");
                                         }
                                         if(rs3.getDouble("biayaoperator2")>0){
-                                            htmlContent.append("Operator 2 : "+Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",rs3.getString("operator2"))+", ");
+                                            htmlContent.append("Operator 2 : "+Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs3.getString("operator2"))+", ");
                                         }
                                         if(rs3.getDouble("biayaoperator3")>0){
-                                            htmlContent.append("Operator 3 : "+Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",rs3.getString("operator3"))+", ");
+                                            htmlContent.append("Operator 3 : "+Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs3.getString("operator3"))+", ");
                                         }
                                         if(rs3.getDouble("biayaasisten_operator1")>0){
-                                            htmlContent.append("Asisten Operator 1 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("asisten_operator1"))+", ");
+                                            htmlContent.append("Asisten Operator 1 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("asisten_operator1"))+", ");
                                         }
                                         if(rs3.getDouble("biayaasisten_operator2")>0){
-                                            htmlContent.append("Asisten Operator 2 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("asisten_operator2"))+", ");
+                                            htmlContent.append("Asisten Operator 2 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("asisten_operator2"))+", ");
                                         }
                                         if(rs3.getDouble("biayainstrumen")>0){
-                                            htmlContent.append("Instrumen : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("instrumen"))+", ");
+                                            htmlContent.append("Instrumen : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("instrumen"))+", ");
                                         }
                                         if(rs3.getDouble("biayadokter_anak")>0){
-                                            htmlContent.append("Dokter Anak : "+Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",rs3.getString("dokter_anak"))+", ");
+                                            htmlContent.append("Dokter Anak : "+Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs3.getString("dokter_anak"))+", ");
                                         }
                                         if(rs3.getDouble("biayaperawaat_resusitas")>0){
-                                            htmlContent.append("Perawat Resusitas : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("perawaat_resusitas"))+", ");
+                                            htmlContent.append("Perawat Resusitas : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("perawaat_resusitas"))+", ");
                                         }
                                         if(rs3.getDouble("biayadokter_anestesi")>0){
-                                            htmlContent.append("Dokter Anestesi : "+Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",rs3.getString("dokter_anestesi"))+", ");
+                                            htmlContent.append("Dokter Anestesi : "+Sequel.cariIsi("select dokter.nm_dokter from dokter where dokter.kd_dokter=?",rs3.getString("dokter_anestesi"))+", ");
                                         }
                                         if(rs3.getDouble("biayaasisten_anestesi")>0){
-                                            htmlContent.append("Asisten Anestesi : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("asisten_anestesi"))+", ");
+                                            htmlContent.append("Asisten Anestesi : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("asisten_anestesi"))+", ");
                                         }
                                         if(rs3.getDouble("biayabidan")>0){
-                                            htmlContent.append("Bidan 1 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("bidan"))+", ");
+                                            htmlContent.append("Bidan 1 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("bidan"))+", ");
                                         }
                                         if(rs3.getDouble("biayabidan2")>0){
-                                            htmlContent.append("Bidan 2 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("bidan2"))+", ");
+                                            htmlContent.append("Bidan 2 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("bidan2"))+", ");
                                         }
                                         if(rs3.getDouble("biayabidan3")>0){
-                                            htmlContent.append("Bidan 3 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("bidan3"))+", ");
+                                            htmlContent.append("Bidan 3 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("bidan3"))+", ");
                                         }
                                         if(rs3.getDouble("biayaperawat_luar")>0){
-                                            htmlContent.append("Perawat Luar : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("perawat_luar"))+", ");
+                                            htmlContent.append("Perawat Luar : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("perawat_luar"))+", ");
                                         }
                                         if(rs3.getDouble("biaya_omloop")>0){
-                                            htmlContent.append("Onloop 1 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("omloop"))+", ");
+                                            htmlContent.append("Onloop 1 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("omloop"))+", ");
                                         }
                                         if(rs3.getDouble("biaya_omloop2")>0){
-                                            htmlContent.append("Onloop 2 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("omloop2"))+", ");
+                                            htmlContent.append("Onloop 2 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("omloop2"))+", ");
                                         }
                                         if(rs3.getDouble("biaya_omloop3")>0){
-                                            htmlContent.append("Onloop 3 : "+Sequel.cariIsi("select nama from petugas where nip=?",rs3.getString("omloop3"))+", ");
+                                            htmlContent.append("Onloop 3 : "+Sequel.cariIsi("select petugas.nama from petugas where petugas.nip=?",rs3.getString("omloop3"))+", ");
                                         }
                                         htmlContent.append(
                                                 ")</td>"+
@@ -1035,13 +1035,13 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='5'>Pemeriksaan Radiologi</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='26%' bgcolor='#fafff5'>Nama Pemeriksaan</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Dokter PJ</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Petugas</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='26%' bgcolor='#FFFAFA'>Nama Pemeriksaan</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Dokter PJ</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Petugas</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1082,13 +1082,13 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='5'>Pemeriksaan Laboratorium</td><td valign='top' colspan='1' align='right'>:</td><td valign='top'></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='26%' bgcolor='#fafff5'>Nama Pemeriksaan</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Dokter PJ</td>"+
-                                          "<td valign='top' width='17%' bgcolor='#fafff5'>Petugas</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='26%' bgcolor='#FFFAFA'>Nama Pemeriksaan</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Dokter PJ</td>"+
+                                          "<td valign='top' width='17%' bgcolor='#FFFAFA'>Petugas</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1120,9 +1120,9 @@ public class frmUtama extends javax.swing.JFrame {
                                                        "<td valign='top' align='center'></td>"+
                                                        "<td valign='top'></td>"+
                                                        "<td valign='top'></td>"+
-                                                       "<td valign='top' align='center' bgcolor='#fafff5'>Detail Pemeriksaan</td>"+
-                                                       "<td valign='top' align='center' bgcolor='#fafff5'>Hasil</td>"+
-                                                       "<td valign='top' align='center' bgcolor='#fafff5'>Nilai Rujukan</td>"+
+                                                       "<td valign='top' align='center' bgcolor='#FFFAFA'>Detail Pemeriksaan</td>"+
+                                                       "<td valign='top' align='center' bgcolor='#FFFAFA'>Hasil</td>"+
+                                                       "<td valign='top' align='center' bgcolor='#FFFAFA'>Nilai Rujukan</td>"+
                                                        "<td valign='top' align='right'></td>"+
                                                     "</tr>");
                                                 rs4.beforeFirst();
@@ -1172,12 +1172,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Pemberian Obat/BHP/Alkes</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='50%' bgcolor='#fafff5'>Nama Obat/BHP/Alkes</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Jumlah</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Obat/BHP/Alkes</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Jumlah</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1216,12 +1216,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Penggunaan Obat/BHP Operasi</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Tanggal</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='50%' bgcolor='#fafff5'>Nama Obat/BHP</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Jumlah</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Tanggal</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Obat/BHP</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Jumlah</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1260,12 +1260,12 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='4'>Resep Pulang</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='50%' bgcolor='#fafff5'>Nama Obat/BHP/Alkes</td>"+
-                                          "<td valign='top' width='15%' bgcolor='#fafff5'>Dosis</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Jumlah</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='50%' bgcolor='#FFFAFA'>Nama Obat/BHP/Alkes</td>"+
+                                          "<td valign='top' width='15%' bgcolor='#FFFAFA'>Dosis</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Jumlah</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1304,11 +1304,11 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='3'>Retur Obat</td><td valign='top' colspan='1' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Kode</td>"+
-                                          "<td valign='top' width='65%' bgcolor='#fafff5'>Nama Obat/BHP/Alkes</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Jumlah</td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Kode</td>"+
+                                          "<td valign='top' width='65%' bgcolor='#FFFAFA'>Nama Obat/BHP/Alkes</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Jumlah</td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1343,10 +1343,10 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='2'>Tambahan Biaya</td><td valign='top' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='84%' bgcolor='#fafff5'>Nama Tambahan</td>"+
-                                          "<td valign='top' width='1%' bgcolor='#fafff5'></td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='84%' bgcolor='#FFFAFA'>Nama Tambahan</td>"+
+                                          "<td valign='top' width='1%' bgcolor='#FFFAFA'></td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1380,10 +1380,10 @@ public class frmUtama extends javax.swing.JFrame {
                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"+
                                         "<tr><td valign='top' colspan='2'>Potongan Biaya</td><td valign='top' align='right'>:</td><td></td></tr>"+            
                                         "<tr align='center'>"+
-                                          "<td valign='top' width='5%' bgcolor='#fafff5'>No.</td>"+
-                                          "<td valign='top' width='84%' bgcolor='#fafff5'>Nama Potongan</td>"+
-                                          "<td valign='top' width='1%' bgcolor='#fafff5'></td>"+
-                                          "<td valign='top' width='10%' bgcolor='#fafff5'>Biaya</td>"+
+                                          "<td valign='top' width='5%' bgcolor='#FFFAFA'>No.</td>"+
+                                          "<td valign='top' width='84%' bgcolor='#FFFAFA'>Nama Potongan</td>"+
+                                          "<td valign='top' width='1%' bgcolor='#FFFAFA'></td>"+
+                                          "<td valign='top' width='10%' bgcolor='#FFFAFA'>Biaya</td>"+
                                         "</tr>");
                                     rs3.beforeFirst();
                                     w=1;
@@ -1452,7 +1452,7 @@ public class frmUtama extends javax.swing.JFrame {
 
     public  void setNoRm() {
         KdRw.setText(Sequel.cariIsi("select no_rkm_medis from temppanggilrm"));
-        TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=?",KdRw.getText()));
+        TPasien.setText(Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?",KdRw.getText()));
         tampil();
     }
 }

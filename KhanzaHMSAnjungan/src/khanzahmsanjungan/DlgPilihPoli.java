@@ -21,7 +21,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Calendar;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -431,6 +430,6 @@ public class DlgPilihPoli extends javax.swing.JDialog {
     
     public void setPasien(String norm){
         LblNoRm.setText(norm);
-        LblNama.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=?", norm));
+        LblNama.setText(Sequel.cariIsi("select pasien.nm_pasien from pasien where pasien.no_rkm_medis=?", norm));
     }
 }

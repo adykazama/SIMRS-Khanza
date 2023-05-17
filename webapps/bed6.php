@@ -2,8 +2,6 @@
  //fitur update kamar aplicare ini adalah penyempurnaan dari kontribusi Mas Tirta dari RSUK Ciracas Jakarta Timur
  session_start();
  require_once('conf/conf.php');
- require_once('updateaplicare.php');
- require_once('./updatesiranap.php');
  header("Expires: Mon, 26 Jul 1997 05:00:00 GMT"); 
  header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT"); 
  header("Cache-Control: no-store, no-cache, must-revalidate"); 
@@ -12,7 +10,7 @@
  date_default_timezone_set("Asia/Bangkok");
  $tanggal= mktime(date("m"),date("d"),date("Y"));
  $jam=date("H:i");
- $setting=  mysqli_fetch_array(bukaquery("select nama_instansi,alamat_instansi,kabupaten,propinsi,kontak,email,logo from setting"));
+ $setting=  mysqli_fetch_array(bukaquery("select setting.nama_instansi,setting.alamat_instansi,setting.kabupaten,setting.propinsi,setting.kontak,setting.email,setting.logo from setting"));
 ?>
 <!DOCTYPE html>
 <html>
@@ -159,8 +157,6 @@
                         </td>
                       </tr> ";
                   }
-                  updateAplicare();
-                  //updateSiranap();
                 ?>
               </table>
              </div>

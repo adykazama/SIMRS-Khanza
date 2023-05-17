@@ -20,8 +20,8 @@ import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -73,22 +73,27 @@ public final class DlgJabatan extends javax.swing.JDialog {
         TKd.setDocument(new batasInput((byte)4).getKata(TKd));
         TNm.setDocument(new batasInput((byte)25).getKata(TNm));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        if(koneksiDB.cariCepat().equals("aktif")){
+        if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
             });
-        } 
-        try {
-            ps=koneksi.prepareStatement("select kd_jbtn, nm_jbtn "+
-                " from jabatan where  kd_jbtn like ? or "+
-                " nm_jbtn like ? order by kd_jbtn");
-        } catch (SQLException e) {
-            System.out.println(e);
         }
     }
 
@@ -133,7 +138,7 @@ public final class DlgJabatan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Jabatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Jabatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 50, 50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -206,6 +211,7 @@ public final class DlgJabatan extends javax.swing.JDialog {
         BtnSimpan.setText("Simpan");
         BtnSimpan.setToolTipText("Alt+S");
         BtnSimpan.setName("BtnSimpan"); // NOI18N
+        BtnSimpan.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSimpanActionPerformed(evt);
@@ -381,9 +387,13 @@ public final class DlgJabatan extends javax.swing.JDialog {
         }else if(TNm.getText().trim().equals("")){
             Valid.textKosong(TNm,"nama jabatan");
         }else{
-            Sequel.menyimpan("jabatan","'"+TKd.getText()+"','"+TNm.getText()+"'","Kode Jabatan");
-            tampil();
-            emptTeks();
+            if(Sequel.menyimpantf("jabatan","'"+TKd.getText()+"','"+TNm.getText()+"'","Kode Jabatan")==true){
+                tabMode.addRow(new String[]{
+                    TKd.getText(),TNm.getText()
+                });
+                emptTeks();
+                LCount.setText(""+tabMode.getRowCount());
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -406,9 +416,15 @@ public final class DlgJabatan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode,TKd,"jabatan","kd_jbtn");
-        tampil();
-        emptTeks();
+        if(tbJabatan.getSelectedRow()!= -1){
+            if(Sequel.meghapustf("jabatan","kd_jbtn",tbJabatan.getValueAt(tbJabatan.getSelectedRow(),0).toString())==true){
+                tabMode.removeRow(tbJabatan.getSelectedRow());
+                emptTeks();
+                LCount.setText(""+tabMode.getRowCount());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan pilih data yang mau dihapus...!!!!");
+        } 
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
@@ -425,9 +441,17 @@ public final class DlgJabatan extends javax.swing.JDialog {
         }else if(TNm.getText().trim().equals("")){
             Valid.textKosong(TNm,"nama jabatan");
         }else{
-            Valid.editTable(tabMode,"jabatan","kd_jbtn",TKd,"nm_jbtn='"+TNm.getText()+"'");
-            if(tabMode.getRowCount()!=0){tampil();}
-            emptTeks();
+            if(tbJabatan.getSelectedRow()>-1){
+                if(Sequel.mengedittf("jabatan","kd_jbtn=?","kd_jbtn=?,nm_jbtn=?",3,new String[]{
+                        TKd.getText(),TNm.getText(),tbJabatan.getValueAt(tbJabatan.getSelectedRow(), 0).toString()
+                    })==true){
+                    tabMode.setValueAt(TKd.getText(),tbJabatan.getSelectedRow(),0);
+                    tabMode.setValueAt(TNm.getText(),tbJabatan.getSelectedRow(),1);
+                    emptTeks();
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Maaf, Silahkan pilih data yang mau diganti...!!!!");
+            } 
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -556,15 +580,30 @@ public final class DlgJabatan extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps.setString(1,"%"+TCari.getText().trim()+"%");
-            ps.setString(2,"%"+TCari.getText().trim()+"%");
-            rs=ps.executeQuery();
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2)};
-                tabMode.addRow(data);
-            }
-        }catch(SQLException e){
+            ps=koneksi.prepareStatement("select kd_jbtn, nm_jbtn "+
+                    " from jabatan where  kd_jbtn like ? or "+
+                    " nm_jbtn like ? order by kd_jbtn");
+            try {
+                ps.setString(1,"%"+TCari.getText().trim()+"%");
+                ps.setString(2,"%"+TCari.getText().trim()+"%");
+                rs=ps.executeQuery();
+                while(rs.next()){
+                    tabMode.addRow(new String[]{
+                        rs.getString(1),rs.getString(2)
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
+                }
+                
+                if(ps!=null){
+                    ps.close();
+                }
+            } 
+        }catch(Exception e){
             System.out.println("Notifikasi : "+e);
         }
         LCount.setText(""+tabMode.getRowCount());

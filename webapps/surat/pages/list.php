@@ -1,14 +1,21 @@
+<?php
+    if(strpos($_SERVER['REQUEST_URI'],"pages")){
+        if(!strpos($_SERVER['REQUEST_URI'],"pages/upload/")){
+            exit(header("Location:../index.php"));
+        }
+    }
+?>
 <div id="post">
     <div class="entry">   
 	<form name="frm_aturadmin" onsubmit="return validasiIsi();" method="post" action="" enctype=multipart/form-data>
         <?php
-            $tgl1     =isset($_GET['tgl1'])?$_GET['tgl1']:NULL;
-            $tgl2     =isset($_GET['tgl2'])?$_GET['tgl2']:NULL;
-            $action   =isset($_GET['action'])?$_GET['action']:NULL;
-            $keyword  =str_replace("_"," ",isset($_GET['keyword']))?str_replace("_"," ",$_GET['keyword']):NULL;
-            $ruang    =str_replace("_"," ",isset($_GET['ruang']))?str_replace("_"," ",$_GET['ruang']):NULL;
-            $sttssurat=str_replace("_"," ",isset($_GET['sttssurat']))?str_replace("_"," ",$_GET['sttssurat']):NULL;
-            $sttsbalas=str_replace("_"," ",isset($_GET['sttsbalas']))?str_replace("_"," ",$_GET['sttsbalas']):NULL;
+            $tgl1     = validTeks(isset($_GET['tgl1'])?$_GET['tgl1']:NULL);
+            $tgl2     = validTeks(isset($_GET['tgl2'])?$_GET['tgl2']:NULL);
+            $action   = validTeks(isset($_GET['action'])?$_GET['action']:NULL);
+            $keyword  = validTeks(str_replace("_"," ",isset($_GET['keyword']))?str_replace("_"," ",$_GET['keyword']):NULL);
+            $ruang    = validTeks(str_replace("_"," ",isset($_GET['ruang']))?str_replace("_"," ",$_GET['ruang']):NULL);
+            $sttssurat= validTeks(str_replace("_"," ",isset($_GET['sttssurat']))?str_replace("_"," ",$_GET['sttssurat']):NULL);
+            $sttsbalas= validTeks(str_replace("_"," ",isset($_GET['sttsbalas']))?str_replace("_"," ",$_GET['sttsbalas']):NULL);
         ?>
     <div style="width: 100%; height: 99.9%; overflow: auto;">
     <?php        
@@ -25,14 +32,14 @@
                 and surat_status.kd=surat_masuk.kd_status and surat_balas.kd=surat_masuk.kd_balas and 
                 surat_masuk.kd_sifat=surat_sifat.kd and surat_masuk.kd_ruang=surat_ruang.kd and 
                 surat_lemari.kd=surat_masuk.kd_lemari and surat_masuk.kd_rak=surat_rak.kd and surat_masuk.kd_map=surat_map.kd
-                where surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.no_surat like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.asal like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.tujuan like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.lampiran like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.tembusan like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_sifat.sifat like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_masuk.keterangan like '%".$keyword."%' or 
-                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_surat between '".$tgl1."' and '".$tgl2."' and  surat_klasifikasi.klasifikasi like '%".$keyword."%' order by surat_masuk.tgl_surat desc ";
+                where surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.no_surat like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.asal like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.tujuan like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.lampiran like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.tembusan like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_sifat.sifat like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_masuk.keterangan like '%".$keyword."%' or 
+                surat_status.status like '%".$sttssurat."%' and  surat_ruang.ruang like '%".$ruang."%' and surat_balas.balas like '%".$sttsbalas."%' and surat_masuk.tgl_terima between '".$tgl1."' and '".$tgl2."' and  surat_klasifikasi.klasifikasi like '%".$keyword."%' order by surat_masuk.tgl_terima desc ";
         $hasil=bukaquery($_sql);
         $jumlah=mysqli_num_rows($hasil);
         if(mysqli_num_rows($hasil)!=0) {
@@ -62,8 +69,8 @@
                     while($baris = mysqli_fetch_array($hasil)) {                        
                         echo "<tr class='isi'>
                                 <td align='center'>
-                                   <a href=?act=List&action=HAPUS&no_urut=".$baris["no_urut"]."&file_url=".$baris["file_url"]."&tgl1=".$_GET["tgl1"]."&tgl2=".$_GET["tgl2"]."&ruang=".$_GET["ruang"]."&sttssurat=".$_GET["sttssurat"]."&sttsbalas=".$_GET["sttsbalas"]."&keyword=".$_GET["keyword"].">[Hapus]</a>
-                                   <a target=_blank href=../surat/".$baris["file_url"].">[Berkas]</a>
+                                   <a href=?act=List&action=HAPUS&no_urut=".$baris["no_urut"]."&file_url=".$baris["file_url"]."&tgl1=".validTeks($_GET["tgl1"])."&tgl2=".validTeks($_GET["tgl2"])."&ruang=".validTeks($_GET["ruang"])."&sttssurat=".validTeks($_GET["sttssurat"])."&sttsbalas=".validTeks($_GET["sttsbalas"])."&keyword=".validTeks($_GET["keyword"]).">[Hapus]</a>
+                                   <a target=_blank href=../surat/pages/upload/".$baris["file_url"].">[Berkas]</a>
                                 </td>
                                 <td align='left'>".$baris["no_urut"]."</td>
                                 <td align='left'>".$baris["no_surat"]."</td>
@@ -115,7 +122,7 @@
         
         if ($action=="HAPUS") {                
             unlink($_GET['file_url']);
-            Hapus(" surat_masuk "," no_urut ='".$_GET['no_urut']."' ","?act=List&tgl1=".$_GET['tgl1']."&tgl2=".$_GET['tgl2']."&ruang=".$_GET['ruang']."&sttssurat=".$_GET['sttssurat']."&sttsbalas=".$_GET['sttsbalas']."&keyword=".$_GET['keyword']);
+            Hapus(" surat_masuk "," no_urut ='".validTeks($_GET['no_urut'])."' ","?act=List&tgl1=".validTeks($_GET['tgl1'])."&tgl2=".validTeks($_GET['tgl2'])."&ruang=".validTeks($_GET['ruang'])."&sttssurat=".validTeks($_GET['sttssurat'])."&sttsbalas=".validTeks($_GET['sttsbalas'])."&keyword=".validTeks($_GET['keyword']));
         }
     ?>
     </div>

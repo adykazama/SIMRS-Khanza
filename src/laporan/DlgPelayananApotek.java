@@ -16,7 +16,7 @@ import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
-import fungsi.var;
+import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -42,8 +42,9 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i=0,limabelas=0,tigapuluh=0,satujam=0,lebihsatujam=0;
-    private double lamajam=0;
+    private int i=0,limabelas=0,tigapuluh=0,satujam=0,lebihsatujam=0,limabelas2=0,tigapuluh2=0,satujam2=0,lebihsatujam2=0,
+            limabelas3=0,tigapuluh3=0,satujam3=0,lebihsatujam3=0;
+    private double lamajam=0,lamajam2=0,lamajam3=0;
     /** Creates new form DlgLhtBiaya
      * @param parent
      * @param modal */
@@ -53,7 +54,9 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] rowRwJlDr={"No.","No.RM","Nama Pasien","Dokter","Poli","Jam Peresepan","Jam Pelayanan","Durasi(m)"};
+        Object[] rowRwJlDr={
+            "No.","No.RM","Nama Pasien","Dokter","Poli","Jam Peresepan","Jam Validasi","Jam Penyerahan","Peresepan-Validasi","Validasi-Penyerahan","Peresepan-Penyerahan"
+        };
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -62,7 +65,7 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(35);
@@ -79,21 +82,39 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
             }else if(i==6){
                 column.setPreferredWidth(110);
             }else if(i==7){
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(110);
+            }else if(i==8){
+                column.setPreferredWidth(103);
+            }else if(i==9){
+                column.setPreferredWidth(109);
+            }else if(i==10){
+                column.setPreferredWidth(120);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
 
         TKd.setDocument(new batasInput((byte)20).getKata(TKd));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
-        if(koneksiDB.cariCepat().equals("aktif")){
+        if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
             });
         }  
     }    
@@ -139,14 +160,13 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Lama Pelayanan Apotek ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Lama Pelayanan Apotek ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBangsal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal.setName("tbBangsal"); // NOI18N
         tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -171,7 +191,6 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
         label11.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass5.add(label11);
 
-        Tgl1.setEditable(false);
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -183,7 +202,6 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
         label18.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass5.add(label18);
 
-        Tgl2.setEditable(false);
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -290,24 +308,33 @@ public final class DlgPelayananApotek extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             //TCari.requestFocus();
         }else if(tabMode.getRowCount()!=0){
-            Sequel.AutoComitFalse();
+            
             Map<String, Object> param = new HashMap<>();         
-            param.put("namars",var.getnamars());
-            param.put("alamatrs",var.getalamatrs());
-            param.put("kotars",var.getkabupatenrs());
-            param.put("propinsirs",var.getpropinsirs());
-            param.put("kontakrs",var.getkontakrs());
-            param.put("emailrs",var.getemailrs());   
-            param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            param.put("tanggal1",Valid.SetTgl(Tgl1.getSelectedItem()+""));   
-            param.put("tanggal2",Valid.SetTgl(Tgl2.getSelectedItem()+""));   
-            param.put("parameter","%"+TCari.getText().trim()+"%");    
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             param.put("limabelas",""+limabelas);  
             param.put("rata",""+Valid.SetAngka6(lamajam/(i-1)));  
             param.put("tigapuluh",""+tigapuluh);  
             param.put("satujam",""+satujam);  
             param.put("lebihsatujam",""+lebihsatujam);  
-            Valid.MyReport("rptPelayananApotek.jrxml",param,"::[ Laporan Data Pelayanan Apotek ]::");
+            
+            Sequel.queryu("delete from temporary_resep where temp37='"+akses.getalamatip()+"'");
+
+            for(int i=0;i<tabMode.getRowCount();i++){  
+                Sequel.menyimpan("temporary_resep","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?",38,new String[]{
+                    ""+i,tabMode.getValueAt(i,0).toString(),tabMode.getValueAt(i,1).toString(),tabMode.getValueAt(i,2).toString(),
+                    tabMode.getValueAt(i,3).toString(),tabMode.getValueAt(i,4).toString(),tabMode.getValueAt(i,5).toString(),
+                    tabMode.getValueAt(i,6).toString(),tabMode.getValueAt(i,7).toString(),tabMode.getValueAt(i,8).toString(),
+                    tabMode.getValueAt(i,9).toString(),tabMode.getValueAt(i,10).toString(),"","","","","","","","","",
+                    "","","","","","","","","","","","","","","","",akses.getalamatip()
+                });
+            }
+            Valid.MyReportqry("rptPelayananApotek.jasper","report","::[ Laporan Data Pelayanan Apotek ]::","select * from temporary_resep where temporary_resep.temp37='"+akses.getalamatip()+"' order by temporary_resep.no",param);
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -439,73 +466,82 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tigapuluh=0;
             satujam=0;
             lebihsatujam=0;
+            lamajam=0; 
+            limabelas2=0;
+            tigapuluh2=0;
+            satujam2=0;
+            lebihsatujam2=0;
+            lamajam2=0; 
+            limabelas3=0;
+            tigapuluh3=0;
+            satujam3=0;
+            lebihsatujam3=0;
+            lamajam3=0;
+            i=1;
             ps=koneksi.prepareStatement(
                 "select reg_periksa.no_rkm_medis,pasien.nm_pasien,dokter.nm_dokter,poliklinik.nm_poli," +
                 "resep_obat.tgl_peresepan,resep_obat.jam_peresepan,resep_obat.tgl_perawatan,resep_obat.jam," +
-                "round((TIME_TO_SEC(concat(resep_obat.tgl_perawatan,' ',resep_obat.jam))-TIME_TO_SEC(concat(resep_obat.tgl_peresepan,' ',resep_obat.jam_peresepan)))/60,2) as durasi " +
+                "resep_obat.tgl_penyerahan,resep_obat.jam_penyerahan," +
+                "round((TIME_TO_SEC(concat(resep_obat.tgl_perawatan,' ',resep_obat.jam))-TIME_TO_SEC(concat(resep_obat.tgl_peresepan,' ',resep_obat.jam_peresepan)))/60,2) as durasivalidasi," +
+                "round((TIME_TO_SEC(concat(resep_obat.tgl_penyerahan,' ',resep_obat.jam_penyerahan))-TIME_TO_SEC(concat(resep_obat.tgl_perawatan,' ',resep_obat.jam)))/60,2) as durasipenyerahan," +
+                "round((TIME_TO_SEC(concat(resep_obat.tgl_penyerahan,' ',resep_obat.jam_penyerahan))-TIME_TO_SEC(concat(resep_obat.tgl_peresepan,' ',resep_obat.jam_peresepan)))/60,2) as durasipelayanan " +
                 "from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join resep_obat " +
                 "on reg_periksa.kd_dokter=dokter.kd_dokter " +
                 "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis " +
                 "and reg_periksa.kd_poli=poliklinik.kd_poli " +
                 "and reg_periksa.no_rawat=resep_obat.no_rawat "+
-                "where resep_obat.tgl_peresepan between ? and ? and poliklinik.nm_poli like ? or " +
-                "resep_obat.tgl_peresepan between ? and ? and dokter.nm_dokter like ? or " +
-                "resep_obat.tgl_peresepan between ? and ? and reg_periksa.no_rkm_medis like ? or " +
-                "resep_obat.tgl_peresepan between ? and ? and pasien.nm_pasien like ?  "+
+                "where resep_obat.tgl_peresepan<>'0000-00-00' and resep_obat.tgl_penyerahan<>'0000-00-00' and resep_obat.tgl_perawatan<>'0000-00-00' and resep_obat.tgl_peresepan between ? and ? "+
+                "and (poliklinik.nm_poli like ? or dokter.nm_dokter like ? or reg_periksa.no_rkm_medis like ? or pasien.nm_pasien like ?)  "+
                 "order by resep_obat.tgl_peresepan,resep_obat.jam_peresepan");
             try {
                 ps.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
                 ps.setString(3,"%"+TCari.getText().trim()+"%");
-                ps.setString(4,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps.setString(5,Valid.SetTgl(Tgl2.getSelectedItem()+""));
+                ps.setString(4,"%"+TCari.getText().trim()+"%");
+                ps.setString(5,"%"+TCari.getText().trim()+"%");
                 ps.setString(6,"%"+TCari.getText().trim()+"%");
-                ps.setString(7,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps.setString(8,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps.setString(9,"%"+TCari.getText().trim()+"%");
-                ps.setString(10,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                ps.setString(11,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                ps.setString(12,"%"+TCari.getText().trim()+"%");
                 rs=ps.executeQuery();
-                i=1;   
-                lamajam=0;
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
-                        i,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-                        rs.getString(5)+" "+rs.getString(6),rs.getString(7)+" "+rs.getString(8),rs.getString(9)
+                        i,rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("nm_dokter"),rs.getString("nm_poli"),
+                        rs.getString("tgl_peresepan")+" "+rs.getString("jam_peresepan"),rs.getString("tgl_perawatan")+" "+rs.getString("jam"),
+                        rs.getString("tgl_penyerahan")+" "+rs.getString("jam_penyerahan"),rs.getString("durasivalidasi"),rs.getString("durasipenyerahan"),
+                        rs.getString("durasipelayanan")
                     });
                     i++;
-                    lamajam=lamajam+rs.getDouble(9);
-                    if(rs.getDouble(9)<=15){
+                    lamajam=lamajam+rs.getDouble("durasivalidasi");
+                    if(rs.getDouble("durasivalidasi")<=15){
                         limabelas++;
-                    }else if((rs.getDouble(9)>15)&&(rs.getDouble(9)<=30)){
+                    }else if((rs.getDouble("durasivalidasi")>15)&&(rs.getDouble("durasivalidasi")<=30)){
                         tigapuluh++;
-                    }else if((rs.getDouble(9)>30)&&(rs.getDouble(9)<=60)){
+                    }else if((rs.getDouble("durasivalidasi")>30)&&(rs.getDouble("durasivalidasi")<=60)){
                         satujam++;
-                    }else if(rs.getDouble(9)>60){
+                    }else if(rs.getDouble("durasivalidasi")>60){
                         lebihsatujam++;
                     }
-                }                 
-                
-                if(lamajam>0){
-                    tabMode.addRow(new Object[]{
-                        "","","Rata-rata (Menit)",": ","","","",""+Valid.SetAngka6(lamajam/(i-1))
-                    });
-                    tabMode.addRow(new Object[]{
-                        "","","0 - 15 Menit",": ","","","",""+limabelas
-                    });
-                    tabMode.addRow(new Object[]{
-                        "","",">15 - <=30 Menit",": ","","","",""+tigapuluh
-                    });
-                    tabMode.addRow(new Object[]{
-                        "","",">30 - <=60 Menit",": ","","","",""+satujam
-                    });
-                    tabMode.addRow(new Object[]{
-                        "","",">60 Menit",": ","","","",""+lebihsatujam
-                    });
-                }                    
+                    lamajam2=lamajam2+rs.getDouble("durasipenyerahan");
+                    if(rs.getDouble("durasipenyerahan")<=15){
+                        limabelas2++;
+                    }else if((rs.getDouble("durasipenyerahan")>15)&&(rs.getDouble("durasipenyerahan")<=30)){
+                        tigapuluh2++;
+                    }else if((rs.getDouble("durasipenyerahan")>30)&&(rs.getDouble("durasipenyerahan")<=60)){
+                        satujam2++;
+                    }else if(rs.getDouble("durasipenyerahan")>60){
+                        lebihsatujam2++;
+                    }
+                    lamajam3=lamajam3+rs.getDouble("durasipelayanan");
+                    if(rs.getDouble("durasipelayanan")<=15){
+                        limabelas3++;
+                    }else if((rs.getDouble("durasipelayanan")>15)&&(rs.getDouble("durasipelayanan")<=30)){
+                        tigapuluh3++;
+                    }else if((rs.getDouble("durasipelayanan")>30)&&(rs.getDouble("durasipelayanan")<=60)){
+                        satujam3++;
+                    }else if(rs.getDouble("durasipelayanan")>60){
+                        lebihsatujam3++;
+                    }
+                }                        
             } catch (Exception e) {
-                System.out.println("laporan.DlgPelayananRalan.tampil() : "+e);
+                System.out.println("Notif : "+e);
             } finally{
                 if(rs!=null){
                     rs.close();
@@ -513,7 +549,25 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 if(ps!=null){
                     ps.close();
                 }
-            }
+            }   
+                
+            if(lamajam>0){
+                tabMode.addRow(new Object[]{
+                    "","","Rata-rata (Menit)",": ","","","","",""+Valid.SetAngka6(lamajam/(i-1)),""+Valid.SetAngka6(lamajam2/(i-1)),""+Valid.SetAngka6(lamajam3/(i-1))
+                });
+                tabMode.addRow(new Object[]{
+                    "","","0 - 15 Menit",": ","","","","",""+limabelas,""+limabelas2,""+limabelas3
+                });
+                tabMode.addRow(new Object[]{
+                    "","",">15 - <=30 Menit",": ","","","","",""+tigapuluh,""+tigapuluh2,""+tigapuluh3
+                });
+                tabMode.addRow(new Object[]{
+                    "","",">30 - <=60 Menit",": ","","","","",""+satujam,""+satujam2,""+satujam3
+                });
+                tabMode.addRow(new Object[]{
+                    "","",">60 Menit",": ","","","","",""+lebihsatujam,""+lebihsatujam2,""+lebihsatujam3
+                });
+            } 
             this.setCursor(Cursor.getDefaultCursor());
         }catch(Exception e){
             System.out.println("Notifikasi : "+e);

@@ -15,7 +15,7 @@ import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
-import fungsi.var;
+import fungsi.akses;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -40,10 +40,11 @@ public final class DlgKehadiran extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private PreparedStatement ps,ps2,ps3,ps4,ps5,ps6,ps7,ps8,ps9;
-    private ResultSet rs,rs2,rs3,rs4,rs5,rs6,rs7,rs8,rs9;
+    private PreparedStatement ps,ps2;
+    private ResultSet rs,rs2;
     private String hadir="0",siang="0",malam="0",tepatwaktu="0",toleransi="0",
-            terlambat1="0",terlambat2="0",terlambat3="0",pagi="0",pilih="";
+            terlambat1="0",terlambat2="0",terlambat3="0",pagi="0",pilih="",keterlambatan="0",durasi="0";
+    private int liburhariraya=0,liburakhad=0,jumlahhari=0,wajibmasuk=0;
     
     /** Creates new form DlgBangsal
      * @param parent
@@ -51,19 +52,9 @@ public final class DlgKehadiran extends javax.swing.JDialog {
     public DlgKehadiran(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Object[] row={"NIP",
-                      "Nama",
-                      "Departemen",
-                      "Kehadiran",
-                      "Pagi",
-                      "Siang",
-                      "Malam",
-                      "Tepat Waktu",
-                      "Toleransi",
-                      "Terlambat I",
-                      "Terlambat II"};
-        
-        tabMode=new DefaultTableModel(null,row){
+        tabMode=new DefaultTableModel(null,new Object[]{
+                "NIP","Nama","Departemen","Kehadiran","Pagi","Siang","Malam","Tepat Waktu","Toleransi","Terlambat I","Terlambat II","Keterlambatan","Durasi","Wajib Masuk","% Hadir"
+            }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
 
@@ -71,66 +62,68 @@ public final class DlgKehadiran extends javax.swing.JDialog {
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 15; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(100);
             }else if(i==1){
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(200);
             }else if(i==2){
                 column.setPreferredWidth(100);
-            }else{
-                column.setPreferredWidth(100);
+            }else if(i==3){
+                column.setPreferredWidth(70);
+            }else if(i==4){
+                column.setPreferredWidth(40);
+            }else if(i==5){
+                column.setPreferredWidth(40);
+            }else if(i==6){
+                column.setPreferredWidth(40);
+            }else if(i==7){
+                column.setPreferredWidth(70);
+            }else if(i==8){
+                column.setPreferredWidth(60);
+            }else if(i==9){
+                column.setPreferredWidth(70);
+            }else if(i==10){
+                column.setPreferredWidth(70);
+            }else if(i==11){
+                column.setPreferredWidth(85);
+            }else if(i==12){
+                column.setPreferredWidth(85);
+            }else if(i==13){
+                column.setPreferredWidth(75);
+            }else if(i==14){
+                column.setPreferredWidth(55);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
-        if(koneksiDB.cariCepat().equals("aktif")){
+        if(koneksiDB.CARICEPAT().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    if(TCari.getText().length()>2){
+                        tampil();
+                    }
+                }
             });
         }  
         loadTahun();
         Valid.loadCombo(Departemen,"nama","departemen");
         Departemen.addItem("Semua");
         Departemen.setSelectedItem("Semua");
-        
-        try {
-           ps=koneksi.prepareStatement(
-                   "select pegawai.nik,pegawai.nama,departemen.nama,pegawai.id from pegawai inner join departemen on pegawai.departemen=departemen.dep_id where  "+
-                   " pegawai.stts_aktif<>'KELUAR' and departemen.nama like ? and pegawai.nik like ? or  pegawai.stts_aktif<>'KELUAR' and departemen.nama like ? and pegawai.nama like ?  order by pegawai.nik ");    
-           ps2=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=?  "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps3=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Siang%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps9=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Pagi%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps4=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Malam%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps5=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Tepat Waktu%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps6=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat Toleransi%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps7=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat I%' "+
-                   "and rekap_presensi.jam_datang like ?");
-           ps8=koneksi.prepareStatement(
-                   "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat II%' "+
-                   "and rekap_presensi.jam_datang like ?");
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
     }
 
     
@@ -171,7 +164,7 @@ public final class DlgKehadiran extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Kehadiran ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(70, 70, 70))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Kehadiran ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50,50,50))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -180,7 +173,6 @@ public final class DlgKehadiran extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbBangsal.setAutoCreateRowSorter(true);
-        tbBangsal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbBangsal.setName("tbBangsal"); // NOI18N
         Scroll.setViewportView(tbBangsal);
 
@@ -199,15 +191,13 @@ public final class DlgKehadiran extends javax.swing.JDialog {
         label11.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass7.add(label11);
 
-        ThnCari.setBorder(null);
         ThnCari.setName("ThnCari"); // NOI18N
         ThnCari.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass7.add(ThnCari);
 
-        BlnCari.setBorder(null);
         BlnCari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         BlnCari.setName("BlnCari"); // NOI18N
-        BlnCari.setPreferredSize(new java.awt.Dimension(50, 23));
+        BlnCari.setPreferredSize(new java.awt.Dimension(62, 23));
         panelGlass7.add(BlnCari);
 
         label12.setText("Departemen :");
@@ -386,10 +376,9 @@ public final class DlgKehadiran extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
         }else if(tabMode.getRowCount()!=0){
-            Sequel.AutoComitFalse();
-            Sequel.queryu("delete from temporary");
+            Sequel.queryu("delete from temporary where temp37='"+akses.getalamatip()+"'");
             for(int r=0;r<tbBangsal.getRowCount();r++){  
-                    Sequel.menyimpan("temporary","'0','"+
+                    Sequel.menyimpan("temporary","'"+r+"','"+
                                     tbBangsal.getValueAt(r,0).toString().replaceAll("'","`") +"','"+
                                     tbBangsal.getValueAt(r,1).toString().replaceAll("'","`")+"','"+
                                     tbBangsal.getValueAt(r,2).toString().replaceAll("'","`")+"','"+
@@ -400,20 +389,23 @@ public final class DlgKehadiran extends javax.swing.JDialog {
                                     tbBangsal.getValueAt(r,7).toString().replaceAll("'","`")+"','"+
                                     tbBangsal.getValueAt(r,8).toString().replaceAll("'","`")+"','"+
                                     tbBangsal.getValueAt(r,9).toString().replaceAll("'","`")+"','"+
-                                    tbBangsal.getValueAt(r,10).toString().replaceAll("'","`")+"','','','','','','','','','','','','','','','','','','','','','','','','','',''","Rekap Nota Pembayaran");
+                                    tbBangsal.getValueAt(r,10).toString().replaceAll("'","`")+"','"+
+                                    tbBangsal.getValueAt(r,11).toString().replaceAll("'","`")+"','"+
+                                    tbBangsal.getValueAt(r,12).toString().replaceAll("'","`")+"','"+
+                                    tbBangsal.getValueAt(r,13).toString().replaceAll("'","`")+"','"+
+                                    tbBangsal.getValueAt(r,14).toString().replaceAll("'","`")+"','','','','','','','','','','','','','','','','','','','','','','"+akses.getalamatip()+"'","Rekap Nota Pembayaran");
             }
-            Sequel.AutoComitTrue();
+            
             Map<String, Object> param = new HashMap<>();                 
-            param.put("namars",var.getnamars());
-            param.put("alamatrs",var.getalamatrs());
-            param.put("kotars",var.getkabupatenrs());
-            param.put("propinsirs",var.getpropinsirs());
-            param.put("kontakrs",var.getkontakrs());
-            param.put("emailrs",var.getemailrs());   
+            param.put("namars",akses.getnamars());
+            param.put("alamatrs",akses.getalamatrs());
+            param.put("kotars",akses.getkabupatenrs());
+            param.put("propinsirs",akses.getpropinsirs());
+            param.put("kontakrs",akses.getkontakrs());
+            param.put("emailrs",akses.getemailrs());   
             param.put("tahun","BULAN "+BlnCari.getSelectedItem()+" TAHUN "+ThnCari.getSelectedItem());   
-            param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptHadir.jrxml","report","::[ Rekap Kehadiran Pegawai ]::",
-                "select * from temporary order by no asc",param);
+            param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
+            Valid.MyReportqry("rptHadir.jasper","report","::[ Rekap Kehadiran Pegawai ]::","select * from temporary where temporary.temp37='"+akses.getalamatip()+"' order by temporary.no",param);
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -467,92 +459,289 @@ public final class DlgKehadiran extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps.setString(1,"%"+Departemen.getSelectedItem().toString().replaceAll("Semua","")+"%");
-            ps.setString(2,"%"+TCari.getText().trim()+"%");
-            ps.setString(3,"%"+Departemen.getSelectedItem().toString().replaceAll("Semua","")+"%");
-            ps.setString(4,"%"+TCari.getText().trim()+"%");
-            rs=ps.executeQuery();
-            while(rs.next()){
-                hadir="0";pagi="0";siang="0";malam="0";tepatwaktu="0";toleransi="0";terlambat1="0";terlambat2="0"; 
+            ps=koneksi.prepareStatement(
+                   "select pegawai.nik,pegawai.nama,departemen.nama,pegawai.id,pegawai.wajibmasuk from pegawai inner join departemen on pegawai.departemen=departemen.dep_id where  "+
+                   " pegawai.stts_aktif<>'KELUAR' and departemen.nama like ? and pegawai.nik like ? or  pegawai.stts_aktif<>'KELUAR' and departemen.nama like ? and pegawai.nama like ?  order by pegawai.nik ");    
+            try {
+                ps.setString(1,"%"+Departemen.getSelectedItem().toString().replaceAll("Semua","")+"%");
+                ps.setString(2,"%"+TCari.getText().trim()+"%");
+                ps.setString(3,"%"+Departemen.getSelectedItem().toString().replaceAll("Semua","")+"%");
+                ps.setString(4,"%"+TCari.getText().trim()+"%");
+                rs=ps.executeQuery();
+                liburhariraya=Sequel.cariInteger("select count(set_hari_libur.tanggal) from set_hari_libur where left(set_hari_libur.tanggal,7)=?",ThnCari.getSelectedItem().toString()+"-"+BlnCari.getSelectedItem().toString());
+                liburakhad=Valid.hariAkhad(Integer.parseInt(BlnCari.getSelectedItem().toString()),Integer.parseInt(ThnCari.getSelectedItem().toString()));
+                jumlahhari=Valid.jumlahHari(Integer.parseInt(BlnCari.getSelectedItem().toString()),Integer.parseInt(ThnCari.getSelectedItem().toString()));
                 
-                ps2.setString(1,rs.getString(4));
-                ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
-                rs2=ps2.executeQuery();
-                rs2.last();
-                if(rs2.getRow()>0){
-                    hadir=rs2.getString(1);
-                }                
-                
-                ps3.setString(1,rs.getString(4));
-                ps3.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
-                rs3=ps3.executeQuery();
-                rs3.last();
-                if(rs3.getRow()>0){
-                    siang=rs3.getString(1);
+                while(rs.next()){
+                    hadir="0";pagi="0";siang="0";malam="0";tepatwaktu="0";toleransi="0";terlambat1="0";terlambat2="0";keterlambatan="0";durasi="0"; 
+                    wajibmasuk=0;
+                    if(rs.getString("wajibmasuk").equals("-1")){
+                        wajibmasuk=0;
+                    }else if(rs.getString("wajibmasuk").equals("-2")){
+                        wajibmasuk=jumlahhari-4;
+                    }else if(rs.getString("wajibmasuk").equals("-3")){
+                        wajibmasuk=jumlahhari-2-liburhariraya;
+                    }else if(rs.getString("wajibmasuk").equals("-4")){
+                        wajibmasuk=jumlahhari-liburakhad;
+                    }else if(rs.getString("wajibmasuk").equals("-5")){
+                        wajibmasuk=Sequel.cariInteger("select (if(h1='',0,1)+if(h2='',0,1)+if(h3='',0,1)+if(h4='',0,1)+if(h5='',0,1)+"
+                                      +"if(h6='',0,1)+if(h7='',0,1)+if(h8='',0,1)+if(h9='',0,1)+if(h10='',0,1)+"
+                                      +"if(h11='',0,1)+if(h12='',0,1)+if(h13='',0,1)+if(h14='',0,1)+if(h15='',0,1)+"
+                                      +"if(h16='',0,1)+if(h17='',0,1)+if(h18='',0,1)+if(h19='',0,1)+if(h20='',0,1)+"
+                                      +"if(h21='',0,1)+if(h22='',0,1)+if(h23='',0,1)+if(h24='',0,1)+if(h25='',0,1)+"
+                                      +"if(h26='',0,1)+if(h27='',0,1)+if(h28='',0,1)+if(h29='',0,1)+if(h30='',0,1)+"
+                                      +"if(h31='',0,1)) from jadwal_pegawai where id='"+rs.getString("id")+"' and "
+                                      +"tahun='"+ThnCari.getSelectedItem().toString()+"' and bulan='"+BlnCari.getSelectedItem().toString()+"'");
+                    }else if(!rs.getString("wajibmasuk").equals("0")){
+                        wajibmasuk=rs.getInt("wajibmasuk");
+                    }else if(!(rs.getString("wajibmasuk").equals("0"))){
+                        wajibmasuk=jumlahhari-liburakhad-liburhariraya;
+                    }
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=?  "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            hadir=rs2.getString(1);
+                        } 
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+                                       
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Siang%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            siang=rs2.getString(1);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Pagi%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            pagi=rs2.getString(1);
+                        } 
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }    
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.shift like '%Malam%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            malam=rs2.getString(1);
+                        } 
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+                                       
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Tepat Waktu%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            tepatwaktu=rs2.getString(1);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+                        
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat Toleransi%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            toleransi=rs2.getString(1);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+                        
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat I%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            terlambat1=rs2.getString(1);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+
+                    ps2=koneksi.prepareStatement(
+                        "select count(rekap_presensi.id) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.status like '%Terlambat II%' "+
+                        "and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            terlambat2=rs2.getString(1);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }   
+                    
+                    ps2=koneksi.prepareStatement(
+                        "select concat(round((sum(TIME_TO_SEC(rekap_presensi.keterlambatan))-mod(sum(TIME_TO_SEC(rekap_presensi.keterlambatan)),3600))/3600),':',round((mod(sum(TIME_TO_SEC(rekap_presensi.keterlambatan)),3600)-mod(mod(sum(TIME_TO_SEC(rekap_presensi.keterlambatan)),3600),60))/60),':',round(mod(mod(sum(TIME_TO_SEC(rekap_presensi.keterlambatan)),3600),60))) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            keterlambatan=rs2.getString(1);
+                        }
+                        
+                        if(keterlambatan==null){
+                            keterlambatan="00:00:00";
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+
+                    ps2=koneksi.prepareStatement(
+                        "select concat(round((sum(TIME_TO_SEC(rekap_presensi.durasi))-mod(sum(TIME_TO_SEC(rekap_presensi.durasi)),3600))/3600),':',round((mod(sum(TIME_TO_SEC(rekap_presensi.durasi)),3600)-mod(mod(sum(TIME_TO_SEC(rekap_presensi.durasi)),3600),60))/60),':',round(mod(mod(sum(TIME_TO_SEC(rekap_presensi.durasi)),3600),60))) from rekap_presensi where rekap_presensi.id=? and rekap_presensi.jam_datang like ?");
+                    try {
+                        ps2.setString(1,rs.getString(4));
+                        ps2.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
+                        rs2=ps2.executeQuery();
+                        rs2.last();
+                        if(rs2.getRow()>0){
+                            durasi=rs2.getString(1);
+                        }
+                        
+                        if(durasi==null){
+                            durasi="00:00:00";
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notif 2 : "+e);
+                    } finally{
+                        if(rs2!=null){
+                            rs2.close();
+                        }
+                        if(ps2!=null){
+                            ps2.close();
+                        }
+                    }
+                    
+                    terlambat3=Valid.SetAngka2(Double.parseDouble(terlambat1)-Double.parseDouble(terlambat2));
+
+                    tabMode.addRow(new Object[]{
+                        rs.getString(1),rs.getString(2),rs.getString(3),hadir,pagi,siang,malam,tepatwaktu,toleransi,terlambat3,terlambat2,keterlambatan,durasi,wajibmasuk,Math.round((Double.parseDouble(hadir)/wajibmasuk)*100)+" %"
+                    });
+                 }
+            } catch (Exception e) {
+                System.out.println("Notif : "+e);
+            } finally{
+                if(rs!=null){
+                    rs.close();
                 }
-                
-                ps9.setString(1,rs.getString(4));
-                ps9.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
-                rs9=ps9.executeQuery();
-                rs9.last();
-                if(rs9.getRow()>0){
-                    pagi=rs9.getString(1);
-                } 
-                
-                ps4.setString(1,rs.getString(4));
-                ps4.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");
-                rs4=ps4.executeQuery();
-                rs4.last();
-                if(rs4.getRow()>0){
-                    malam=rs4.getString(1);
-                }                
-                
-                ps5.setString(1,rs.getString(4));
-                ps5.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
-                rs5=ps5.executeQuery();
-                rs5.last();
-                if(rs5.getRow()>0){
-                    tepatwaktu=rs5.getString(1);
+                if(ps!=null){
+                    ps.close();
                 }
-                
-                ps6.setString(1,rs.getString(4));
-                ps6.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
-                rs6=ps6.executeQuery();
-                rs6.last();
-                if(rs6.getRow()>0){
-                    toleransi=rs6.getString(1);
-                }
-                
-                ps7.setString(1,rs.getString(4));
-                ps7.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
-                rs7=ps7.executeQuery();
-                rs7.last();
-                if(rs7.getRow()>0){
-                    terlambat1=rs7.getString(1);
-                }
-                
-                ps8.setString(1,rs.getString(4));
-                ps8.setString(2,"%"+ThnCari.getSelectedItem()+"-"+BlnCari.getSelectedItem()+"%");                
-                rs8=ps8.executeQuery();
-                rs8.last();
-                if(rs8.getRow()>0){
-                    terlambat2=rs8.getString(1);
-                }
-                
-                terlambat3=Valid.SetAngka2(Double.parseDouble(terlambat1)-Double.parseDouble(terlambat2));
-                
-                tabMode.addRow(new Object[]{rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               hadir,
-                               pagi,
-                               siang,
-                               malam,
-                               tepatwaktu,
-                               toleransi,
-                               terlambat3,
-                               terlambat2});
-             }
+            }
         }catch(SQLException e){
             System.out.println("Notifikasi : "+e);
         }
