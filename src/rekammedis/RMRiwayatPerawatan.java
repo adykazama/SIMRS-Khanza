@@ -451,6 +451,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiFaringLaring = new widget.CekBox();
         chkHasilPemeriksaanEndoskopiHidung = new widget.CekBox();
         chkHasilPemeriksaanEndoskopiTelinga = new widget.CekBox();
+        chkHasilPemeriksaanSpirometri = new widget.CekBox();
         chkCatatanPersalinan = new widget.CekBox();
         chkHasilPersalinanTOLAC = new widget.CekBox();
         chkLaporanTindakan = new widget.CekBox();
@@ -977,7 +978,7 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         FormMenu.setBackground(new java.awt.Color(255, 255, 255));
         FormMenu.setBorder(null);
         FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4975));
+        FormMenu.setPreferredSize(new java.awt.Dimension(255, 4995));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 1, 1));
 
         chkSemua.setSelected(true);
@@ -1957,6 +1958,13 @@ public final class RMRiwayatPerawatan extends javax.swing.JDialog {
         chkHasilPemeriksaanEndoskopiTelinga.setName("chkHasilPemeriksaanEndoskopiTelinga"); // NOI18N
         chkHasilPemeriksaanEndoskopiTelinga.setPreferredSize(new java.awt.Dimension(245, 22));
         FormMenu.add(chkHasilPemeriksaanEndoskopiTelinga);
+
+        chkHasilPemeriksaanSpirometri.setSelected(true);
+        chkHasilPemeriksaanSpirometri.setText("Hasil Pemeriksaan Spirometri");
+        chkHasilPemeriksaanSpirometri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkHasilPemeriksaanSpirometri.setName("chkHasilPemeriksaanSpirometri"); // NOI18N
+        chkHasilPemeriksaanSpirometri.setPreferredSize(new java.awt.Dimension(245, 22));
+        FormMenu.add(chkHasilPemeriksaanSpirometri);
 
         chkCatatanPersalinan.setSelected(true);
         chkCatatanPersalinan.setText("Catatan Persalinan");
@@ -3190,6 +3198,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkHasilPemeriksaanUSGTestis.setSelected(true);
             chkHasilPemeriksaanUSGKepala.setSelected(true);
             chkHasilPemeriksaanUSGMammae.setSelected(true);
+            chkHasilPemeriksaanSpirometri.setSelected(true);
         }else{
             chkTriase.setSelected(false);
             chkAsuhanKeperawatanRalan.setSelected(false);
@@ -3406,6 +3415,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             chkHasilPemeriksaanUSGTestis.setSelected(false);
             chkHasilPemeriksaanUSGKepala.setSelected(false);
             chkHasilPemeriksaanUSGMammae.setSelected(false);
+            chkHasilPemeriksaanSpirometri.setSelected(false);
         }
     }//GEN-LAST:event_chkSemuaItemStateChanged
 
@@ -4119,6 +4129,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.CekBox chkHasilPemeriksaanEndoskopiTelinga;
     private widget.CekBox chkHasilPemeriksaanOCT;
     private widget.CekBox chkHasilPemeriksaanSlitLamp;
+    private widget.CekBox chkHasilPemeriksaanSpirometri;
     private widget.CekBox chkHasilPemeriksaanTreadmill;
     private widget.CekBox chkHasilPemeriksaanUSG;
     private widget.CekBox chkHasilPemeriksaanUSGAbdomen;
@@ -4765,6 +4776,7 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     menampilkanHasilPemeriksaanECHO(rs.getString("no_rawat"));
                     menampilkanHasilPemeriksaanECHOPediatrik(rs.getString("no_rawat"));
                     menampilkanHasilPemeriksaanTreadmill(rs.getString("no_rawat"));
+                    menampilkanHasilPemeriksaanSpirometri(rs.getString("no_rawat"));
                     menampilkanHasilEndoskopiFaringLaring(rs.getString("no_rawat"));
                     menampilkanHasilEndoskopiHidung(rs.getString("no_rawat"));
                     menampilkanHasilEndoskopiTelinga(rs.getString("no_rawat"));
@@ -38820,6 +38832,255 @@ private void BtnPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             }
         } catch (Exception e) {
             System.out.println("Notif Penilaian Skor BISHOP : "+e);
+        }
+    }
+    
+    private void menampilkanHasilPemeriksaanSpirometri(String norawat) {
+        try {
+            if(chkHasilPemeriksaanSpirometri.isSelected()==true){
+                try {
+                    rs2=koneksi.prepareStatement(
+                            "select hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
+                            "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
+                            "hasil_pemeriksaan_spirometri.persamaan_referensi,hasil_pemeriksaan_spirometri.suhu_ruangan,hasil_pemeriksaan_spirometri.tekanan_barometrik,"+
+                            "hasil_pemeriksaan_spirometri.obat_dikonsumsi,hasil_pemeriksaan_spirometri.bronkodilator,hasil_pemeriksaan_spirometri.fvc_pre,"+
+                            "hasil_pemeriksaan_spirometri.fvc_pred,hasil_pemeriksaan_spirometri.fvc_lln,hasil_pemeriksaan_spirometri.fvc_persen,hasil_pemeriksaan_spirometri.fvc_z,"+
+                            "hasil_pemeriksaan_spirometri.fvc_post,hasil_pemeriksaan_spirometri.fvc_post_persen,hasil_pemeriksaan_spirometri.fvc_perubahan,"+
+                            "hasil_pemeriksaan_spirometri.fev1_pre,hasil_pemeriksaan_spirometri.fev1_pred,hasil_pemeriksaan_spirometri.fev1_lln,"+
+                            "hasil_pemeriksaan_spirometri.fev1_persen,hasil_pemeriksaan_spirometri.fev1_z,hasil_pemeriksaan_spirometri.fev1_post,"+
+                            "hasil_pemeriksaan_spirometri.fev1_post_persen,hasil_pemeriksaan_spirometri.fev1_perubahan,hasil_pemeriksaan_spirometri.rasio_pre,"+
+                            "hasil_pemeriksaan_spirometri.rasio_pred,hasil_pemeriksaan_spirometri.rasio_lln,hasil_pemeriksaan_spirometri.rasio_persen,"+
+                            "hasil_pemeriksaan_spirometri.rasio_z,hasil_pemeriksaan_spirometri.rasio_post,hasil_pemeriksaan_spirometri.rasio_post_persen,"+
+                            "hasil_pemeriksaan_spirometri.rasio_perubahan,hasil_pemeriksaan_spirometri.pef_pre,hasil_pemeriksaan_spirometri.pef_pred,"+
+                            "hasil_pemeriksaan_spirometri.pef_lln,hasil_pemeriksaan_spirometri.pef_persen,hasil_pemeriksaan_spirometri.pef_z,hasil_pemeriksaan_spirometri.pef_post,"+
+                            "hasil_pemeriksaan_spirometri.pef_post_persen,hasil_pemeriksaan_spirometri.pef_perubahan,hasil_pemeriksaan_spirometri.fef2575_pre,"+
+                            "hasil_pemeriksaan_spirometri.fef2575_pred,hasil_pemeriksaan_spirometri.fef2575_lln,hasil_pemeriksaan_spirometri.fef2575_persen,"+
+                            "hasil_pemeriksaan_spirometri.fef2575_z,hasil_pemeriksaan_spirometri.fef2575_post,hasil_pemeriksaan_spirometri.fef2575_post_persen,"+
+                            "hasil_pemeriksaan_spirometri.fef2575_perubahan,hasil_pemeriksaan_spirometri.manuver_pre,hasil_pemeriksaan_spirometri.grade_fvc_pre,"+
+                            "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
+                            "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
+                            "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
+                            "hasil_pemeriksaan_spirometri.kesimpulan,hasil_pemeriksaan_spirometri.rekomendasi,hasil_pemeriksaan_spirometri.tanggal "+
+                            "from hasil_pemeriksaan_spirometri inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter "+
+                            "where hasil_pemeriksaan_spirometri.no_rawat='"+norawat+"'").executeQuery();
+                    if(rs2.next()){
+                        htmlContent.append(
+                          "<tr class='isi'>").append( 
+                            "<td valign='top' width='2%'></td>").append(        
+                            "<td valign='top' width='18%'>Hasil Pemeriksaan Spirometri</td>").append(
+                            "<td valign='top' width='1%' align='center'>:</td>").append(
+                            "<td valign='top' width='79%'>").append(
+                              "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        );
+                        do{
+                            file=Sequel.cariIsi("select hasil_pemeriksaan_spirometri_gambar.photo from hasil_pemeriksaan_spirometri_gambar where hasil_pemeriksaan_spirometri_gambar.no_rawat='"+norawat+"'");
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "YANG MELAKUKAN PENGKAJIAN").append(  
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='50%' border='0'>Tanggal : ").append(rs2.getString("tanggal")).append("</td>").append(
+                                              "<td width='50%' border='0'>Dokter : ").append(rs2.getString("kd_dokter")).append(" ").append(rs2.getString("nm_dokter")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='50%' border='0'>Kiriman Dari : ").append(rs2.getString("kiriman_dari")).append("</td>").append(
+                                              "<td width='50%' border='0'>Diagnosa Klinis : ").append(rs2.getString("diagnosa_klinis")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            ); 
+                            
+                            if(!file.equals("")){
+                                htmlContent.append(
+                                    "<tr>").append(
+                                        "<td valign='top'>").append(
+                                           "KURVA / GAMBAR SPIROMETRI").append(  
+                                           "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                              "<tr>").append(
+                                                  "<td valign='top' border='0' width='100%' align='center'><a href='http://").append(koneksiDB.HOSTHYBRIDWEB()).append(":").append(koneksiDB.PORTWEB()).append("/").append(koneksiDB.HYBRIDWEB()).append("/hasilpemeriksaanspirometri/").append(file).append("'><img alt='Gambar Spirometri' src='http://").append(koneksiDB.HOSTHYBRIDWEB()).append(":").append(koneksiDB.PORTWEB()).append("/").append(koneksiDB.HYBRIDWEB()).append("/hasilpemeriksaanspirometri/").append(file).append("' width='450' height='450'/></a></td>").append(
+                                              "</tr>").append(
+                                           "</table>").append(
+                                        "</td>").append(
+                                    "</tr>"
+                                );
+                            }
+                            
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "KONDISI PEMERIKSAAN").append(
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td width='25%'>TB : ").append(rs2.getString("tinggi_badan")).append(" cm</td>").append(
+                                              "<td width='25%'>BB : ").append(rs2.getString("berat_badan")).append(" kg</td>").append(
+                                              "<td width='25%'>Etnis : ").append(rs2.getString("etnis")).append("</td>").append(
+                                              "<td width='25%'>Ref. Prediksi : ").append(rs2.getString("persamaan_referensi")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td width='25%'>Suhu Ruangan : ").append(rs2.getString("suhu_ruangan")).append(" °C</td>").append(
+                                              "<td width='25%'>Tek. Barometrik : ").append(rs2.getString("tekanan_barometrik")).append(" mmHg</td>").append(
+                                              "<td colspan='2'>Obat Dikonsumsi : ").append(rs2.getString("obat_dikonsumsi")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td colspan='4'>Bronkodilator Uji : ").append(rs2.getString("bronkodilator")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            );
+
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "HASIL PENGUKURAN").append(
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td rowspan='2' bgcolor='#FFFAF8' valign='middle' align='center'>Parameter</td>").append(
+                                              "<td colspan='5' bgcolor='#FFFAF8' align='center'>Pre-Bronkodilator</td>").append(
+                                              "<td colspan='3' bgcolor='#FFFAF8' align='center'>Post-Bronkodilator</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>Terukur</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>Prediksi</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>LLN</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>%Pred</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>Z-score</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>Terukur</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>%Pred</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center'>%Perubahan</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td>FVC (L)</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_pre")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_pred")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_lln")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_z")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_post")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_post_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fvc_perubahan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td>FEV1 (L)</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_pre")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_pred")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_lln")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_z")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_post")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_post_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fev1_perubahan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td>FEV1/FVC (%)</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_pre")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_pred")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_lln")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_z")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_post")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_post_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("rasio_perubahan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td>PEF (L/s)</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_pre")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_pred")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_lln")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_z")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_post")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_post_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("pef_perubahan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td>FEF25-75 (L/s)</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_pre")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_pred")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_lln")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_z")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_post")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_post_persen")).append("</td>").append(
+                                              "<td align='center'>").append(rs2.getString("fef2575_perubahan")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            );
+
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "KUALITAS PEMERIKSAAN").append(
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td bgcolor='#FFFAF8' align='center' colspan='2' width='30%'>Manuver</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center' width='10%'>Grade FVC</td>").append(
+                                              "<td bgcolor='#FFFAF8' align='center' width='10%'>Grade FEV1</td>").append(
+                                              "<td width='50%' border='0'>Operator : ").append(rs2.getString("operator")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td valign='middle' width='20%'>Pre-Bronkodilator</td>").append(
+                                              "<td valign='middle' width='10%' align='center'>").append(rs2.getString("manuver_pre")).append("</td>").append(
+                                              "<td valign='middle' align='center'>").append(rs2.getString("grade_fvc_pre")).append("</td>").append(
+                                              "<td valign='middle' align='center'>").append(rs2.getString("grade_fev1_pre")).append("</td>").append(
+                                              "<td valign='middle' rowspan='2' border='0'>Catatan Uji : ").append(rs2.getString("catatan_pelaksanaan").replaceAll("(\r\n|\r|\n|\n\r)","<br>")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td valign='middle'>Post-Bronkodilator</td>").append(
+                                              "<td valign='middle' align='center'>").append(rs2.getString("manuver_post")).append("</td>").append(
+                                              "<td valign='middle' align='center'>").append(rs2.getString("grade_fvc_post")).append("</td>").append(
+                                              "<td valign='middle' align='center'>").append(rs2.getString("grade_fev1_post")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            );
+
+                            htmlContent.append(
+                                 "<tr>").append(
+                                    "<td valign='top'>").append(
+                                       "INTERPRETASI").append(
+                                       "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0px' class='tbl_form'>").append(
+                                          "<tr>").append(
+                                              "<td colspan='2' width='100%'>Pola Gangguan : ").append(rs2.getString("pola_gangguan")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td colspan='2' width='100%'>Derajat : ").append(rs2.getString("derajat")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td colspan='2' width='100%'>Respons Bronkodilator : ").append(rs2.getString("respons_bronkodilator")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td colspan='2' width='100%'>Kesimpulan : ").append(rs2.getString("kesimpulan").replaceAll("(\r\n|\r|\n|\n\r)","<br>")).append("</td>").append(
+                                          "</tr>").append(
+                                          "<tr>").append(
+                                              "<td colspan='2' width='100%'>Rekomendasi : ").append(rs2.getString("rekomendasi")).append("</td>").append(
+                                          "</tr>").append(
+                                       "</table>").append(
+                                    "</td>").append(
+                                 "</tr>"
+                            );
+
+                        }while(rs2.next());
+                        htmlContent.append(
+                              "</table>").append(
+                            "</td>").append(
+                          "</tr>");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : "+e);
+                } finally{
+                    if(rs2!=null){
+                        rs2.close();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Hasil Pemeriksaan Spirometri : "+e);
         }
     }
     

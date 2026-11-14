@@ -292,7 +292,8 @@ public class DlgUser extends javax.swing.JDialog {
                 "[L]Mapping Tindakan Laborat KPTL Satu Sehat","[L]Mapping Tindakan Operasi KPTL Satu Sehat","[L]Mapping Tarif Kamar KPTL Satu Sehat","[M]Check List Kriteria Keluar Isolasi",
                 "[L]Bridging TTE Satu Sehat","[L]Kirim Composition Satu Sehat","[K]Ringkasan Hutang Vendor Aset/Inventaris","[K]Ringkasan Beban Hutang Lain","[U]Set Resep Per Cara Bayar",
                 "[M]Skrining TOLAC","[M]Admisi & Skoring TOLAC","[M]Monitoring Selama TOLAC","[M]Resume Hasil Persalinan TOLAC","[M]Laporan Reaksi Tranfusi","[M]Penilaian GRACE Score",
-                "[M]Penilaian BISHOP Score","[M]Profil Ringkas Rawat Jalan","[M]Hasil USG Testis","[M]Hasil USG Kepala","[M]Hasil USG Mammae","[M]Hasil Pemeriksaan Spirometri"
+                "[M]Penilaian BISHOP Score","[M]Profil Ringkas Rawat Jalan","[M]Hasil USG Testis","[M]Hasil USG Kepala","[M]Hasil USG Mammae","[M]Hasil Pemeriksaan Spirometri",
+                "[P]Surat Pernyataan Bersedia Dirujuk"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -633,7 +634,7 @@ public class DlgUser extends javax.swing.JDialog {
         tbUser.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbUser.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 1232;i++) {
+        for (i = 0; i < 1233;i++) {
             TableColumn column = tbUser.getColumnModel().getColumn(i);
             switch (i) {
                 case 0 -> column.setPreferredWidth(130);
@@ -1685,6 +1686,7 @@ public class DlgUser extends javax.swing.JDialog {
                 case 1229 -> column.setPreferredWidth(105);
                 case 1230 -> column.setPreferredWidth(117);
                 case 1231 -> column.setPreferredWidth(165);
+                case 1232 -> column.setPreferredWidth(188);
                 default -> column.setPreferredWidth(133);
             }
         }
@@ -2115,7 +2117,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
                     "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"+
-                    "'false','false'","User")==true){
+                    "'false','false','false'","User")==true){
                 tabMode.addRow(new Object[]{
                     TKd.getText(),TNmUser.getText(),Jabatan.getText(),TPass.getText(),false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
@@ -2146,7 +2148,7 @@ public class DlgUser extends javax.swing.JDialog {
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
                     false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,
-                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
+                    false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());
@@ -3425,7 +3427,8 @@ public class DlgUser extends javax.swing.JDialog {
                     "hasil_usg_testis='"+tbUser.getValueAt(i,1228).toString()+"',"+
                     "hasil_usg_kepala='"+tbUser.getValueAt(i,1229).toString()+"',"+
                     "hasil_usg_mammae='"+tbUser.getValueAt(i,1230).toString()+"',"+
-                    "hasil_spirometri='"+tbUser.getValueAt(i,1231).toString()+"'")==true){
+                    "hasil_spirometri='"+tbUser.getValueAt(i,1231).toString()+"',"+
+                    "surat_pernyataan_bersedia_dirujuk='"+tbUser.getValueAt(i,1232).toString()+"'")==true){
                     emptTeks();
                 }
             }         
@@ -4941,7 +4944,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                         "hasil_usg_testis='"+tbUser.getValueAt(barisdicopy,1228).toString()+"',"+
                                         "hasil_usg_kepala='"+tbUser.getValueAt(barisdicopy,1229).toString()+"',"+
                                         "hasil_usg_mammae='"+tbUser.getValueAt(barisdicopy,1230).toString()+"',"+
-                                        "hasil_spirometri='"+tbUser.getValueAt(barisdicopy,1231).toString()+"'");
+                                        "hasil_spirometri='"+tbUser.getValueAt(barisdicopy,1231).toString()+"',"+
+                                        "surat_pernyataan_bersedia_dirujuk='"+tbUser.getValueAt(barisdicopy,1232).toString()+"'");
                                 }
                                 userdicopy="";
                                 copyhakakses="";
@@ -5284,7 +5288,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             "user.satu_sehat_mapping_kptl_tarif_kamar,user.checklist_kriteria_keluar_isolasi,user.satu_sehat_tanda_tangan_elektronik,user.satu_sehat_kirim_composition,"+
                             "user.ringkasan_hutang_vendor_inventaris,user.ringkasan_beban_hutang_lain,user.set_resep_per_cara_bayar,user.skrining_tolac,user.admisi_skoring_tolac,user.monitoring_tolac,"+
                             "user.hasil_persalinan_tolac,user.laporan_reaksi_transfusi,user.penilaian_grace_scor,user.penilaian_bishop_scor,user.profil_ringkas_rawat_jalan,user.hasil_usg_testis,"+
-                            "user.hasil_usg_kepala,user.hasil_usg_mammae,user.hasil_spirometri from user order by AES_DECRYPT(user.id_user,'nur')");
+                            "user.hasil_usg_kepala,user.hasil_usg_mammae,user.hasil_spirometri,user.surat_pernyataan_bersedia_dirujuk from user order by AES_DECRYPT(user.id_user,'nur')");
                         try {
                             rs=ps.executeQuery();
                             i=0;
@@ -6530,7 +6534,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                            rs.getBoolean("hasil_usg_testis"),
                                            rs.getBoolean("hasil_usg_kepala"),
                                            rs.getBoolean("hasil_usg_mammae"),
-                                           rs.getBoolean("hasil_spirometri")
+                                           rs.getBoolean("hasil_spirometri"),
+                                           rs.getBoolean("surat_pernyataan_bersedia_dirujuk")
                                         });
                                     }   
                                 } catch (Exception e) {
@@ -7764,7 +7769,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                                        rs.getBoolean("hasil_usg_testis"),
                                        rs.getBoolean("hasil_usg_kepala"),
                                        rs.getBoolean("hasil_usg_mammae"),
-                                       rs.getBoolean("hasil_spirometri")
+                                       rs.getBoolean("hasil_spirometri"),
+                                       rs.getBoolean("surat_pernyataan_bersedia_dirujuk")
                                     });
                                 }                                             
                              }

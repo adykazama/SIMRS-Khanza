@@ -1243,6 +1243,7 @@ import rekammedis.RMPenilaianBishop;
 import rekammedis.RMPenilaianGRACE;
 import rekammedis.RMProfilRingkasRawatJalan;
 import rekammedis.RMReaksiTransfusi;
+import surat.SuratPernyataanBersediaDirujuk;
 
 
 /**
@@ -23819,6 +23820,19 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         this.setCursor(Cursor.getDefaultCursor());
     }
     
+    private void btnSuratPernyataanBersediaDirujukActionPerformed(java.awt.event.ActionEvent evt) {
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SuratPernyataanBersediaDirujuk aplikasi=new SuratPernyataanBersediaDirujuk(this,false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -24540,7 +24554,7 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             btnMapingTarifTindakanRanapKPTLSatuSehat,btnMapingTarifTindakanRadiologiKPTLSatuSehat,btnMapingTarifTindakanLabKPTLSatuSehat,btnMapingTarifTindakanOperasiKPTLSatuSehat,btnMapingTarifKamarKPTLSatuSehat,
             btnChecklistKriteriaKeluarIsolasi,btnBridgingTTESatuSehat,btnBridgingCompositionRMESatuSehat,btnRingkasanHutangVendorAsetInventaris,btnRingkasanBebanHutangLain,btnSetResepPerCaraBayar,
             btnSkriningTOLAC,btnAdmisiSkoringTOLAC,btnMonitoringTOLAC,btnHasilPersalinanTOLAC,btnLaporanReaksiTranfusi,btnPenilaianGRACEScore,btnPenilaianBISHOPScore,btnProfilRingkasRawatJalan,
-            btnHasilUSGTestis,btnHasilUSGKepala,btnHasilUSGMammae,btnHasilPemeriksaanSpirometri;
+            btnHasilUSGTestis,btnHasilUSGKepala,btnHasilUSGMammae,btnHasilPemeriksaanSpirometri,btnSuratPernyataanBersediaDirujuk;
     
     public void isWall(){
         try{            
@@ -30305,6 +30319,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             
             if(akses.getsurat_pengajuan_cuti_pasien()==true){
                 Panelmenu.add(btnSuratPengajuanCutiPerawatan);
+                jmlmenu++;
+            }
+            
+            if(akses.getsurat_pernyataan_bersedia_dirujuk()==true){
+                Panelmenu.add(btnSuratPernyataanBersediaDirujuk);
                 jmlmenu++;
             }
         }else if(cmbMenu.getSelectedIndex()==16){ 
@@ -36410,6 +36429,11 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         
         if(akses.getsurat_pengajuan_cuti_pasien()==true){
             Panelmenu.add(btnSuratPengajuanCutiPerawatan);
+            jmlmenu++;
+        }
+        
+        if(akses.getsurat_pernyataan_bersedia_dirujuk()==true){
+            Panelmenu.add(btnSuratPernyataanBersediaDirujuk);
             jmlmenu++;
         }
 
@@ -44764,6 +44788,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
             }
         }
         
+        if(akses.getsurat_pernyataan_bersedia_dirujuk()==true){
+            if(btnSuratPernyataanBersediaDirujuk.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
+                Panelmenu.add(btnSuratPernyataanBersediaDirujuk);                 
+                jmlmenu++;
+            }
+        }
+        
         if(akses.getruang_perpustakaan()==true){
             if(btnRuangPerpustakaan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())){
                 Panelmenu.add(btnRuangPerpustakaan);
@@ -51604,5 +51635,13 @@ private void MnGantiPasswordBtnLogActionPerformed(java.awt.event.ActionEvent evt
         btnHasilPemeriksaanSpirometri.setName("btnHasilPemeriksaanSpirometri"); 
         btnHasilPemeriksaanSpirometri.setPreferredSize(new java.awt.Dimension(200, 90));
         btnHasilPemeriksaanSpirometri.addActionListener(this::btnHasilPemeriksaanSpirometriActionPerformed);
+        
+        btnSuratPernyataanBersediaDirujuk = new widget.ButtonBig();
+        btnSuratPernyataanBersediaDirujuk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/document_6777296.png")));
+        btnSuratPernyataanBersediaDirujuk.setText("Surat Pernyataan Bersedia Dirujuk");
+        btnSuratPernyataanBersediaDirujuk.setIconTextGap(0);
+        btnSuratPernyataanBersediaDirujuk.setName("btnSuratPernyataanBersediaDirujuk"); 
+        btnSuratPernyataanBersediaDirujuk.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratPernyataanBersediaDirujuk.addActionListener(this::btnSuratPernyataanBersediaDirujukActionPerformed);
     }
 }

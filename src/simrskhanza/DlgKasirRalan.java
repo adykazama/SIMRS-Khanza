@@ -135,6 +135,7 @@ import rekammedis.RMHasilPemeriksaanEcho;
 import rekammedis.RMHasilPemeriksaanEchoPediatrik;
 import rekammedis.RMHasilPemeriksaanOCT;
 import rekammedis.RMHasilPemeriksaanSlitLamp;
+import rekammedis.RMHasilPemeriksaanSpirometri;
 import rekammedis.RMHasilPemeriksaanTreadmill;
 import rekammedis.RMHasilPemeriksaanUSG;
 import rekammedis.RMHasilPemeriksaanUSGAbdomen;
@@ -16164,6 +16165,28 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }
     
+    private void MnHasilPemeriksaanSpirometriActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+        if(tabModekasir.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            TCari.requestFocus();
+        }else if(TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            tbKasirRalan.requestFocus();
+        }else{
+            if(tbKasirRalan.getSelectedRow()!= -1){
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMHasilPemeriksaanSpirometri form=new RMHasilPemeriksaanSpirometri(null,false);
+                form.isCek();
+                form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                form.emptTeks();
+                form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -16614,7 +16637,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                   MnPersetujuanBimbinganRohani,MnPermintaanPerlindunganDariKekerasan,MnSuratPermohonanPrivasi,MnSuratPermintaanSecondOpinion,MnCetakSuratKeteranganBerobat,MnSuratPenolakanResusitasi,MnCatatanObservasiRuangOperasi,
                                   MnHasilPemeriksaanUSGAbdomen,MnIntervensiNyeriFarmakologi,MnIntervensiNyeriNonFarmakologi,MnPengajuanCutiPerawatanPasien,MnCheckListKriteriaMasukIsolasi,MnSkriningTOLAC,MnAdmisiSkoringTOLAC,
                                   MnMonitoringTOLAC,MnHasilPersalinanTOLAC,MnLaporanReaksiTranfusi,MnPenilaianGRACEScore,MnPenilaianBISHOPScore,MnProfilRingkasRawatJalan,MnHasilPemeriksaanUSGTestis,MnHasilPemeriksaanUSGKepala,
-                                  MnHasilPemeriksaanUSGMammae;
+                                  MnHasilPemeriksaanUSGMammae,MnHasilPemeriksaanSpirometri;
     private widget.Menu MnHasilUSG,MnHasilEndoskopi,MnRMSkrining,MnEdukasi,MnRehabMedik,MnRMSkriningRisikoKanker,MnRMSkriningKesehatanGigiMulut,MnSuratPersetujuan,MnSkriningInstrumen,MnSkriningParu,MnCatatanObservasi;
     
     private void tampilkasir() { 
@@ -17015,6 +17038,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnHasilPemeriksaanUSGTestis.setEnabled(akses.gethasil_usg_testis());
         MnHasilPemeriksaanUSGKepala.setEnabled(akses.gethasil_usg_kepala());
         MnHasilPemeriksaanUSGMammae.setEnabled(akses.gethasil_usg_mammae());
+        MnHasilPemeriksaanSpirometri.setEnabled(akses.gethasil_spirometri());
         MnHasilPemeriksaanUSGGynecologi.setEnabled(akses.gethasil_usg_gynecologi());
         MnHasilPemeriksaanEKG.setEnabled(akses.gethasil_pemeriksaan_ekg());
         MnHasilPemeriksaanTreadmill.setEnabled(akses.gethasil_pemeriksaan_treadmill());
@@ -18949,6 +18973,18 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnHasilPemeriksaanUSGMammae.setPreferredSize(new java.awt.Dimension(170, 26));
         MnHasilPemeriksaanUSGMammae.addActionListener(this::MnHasilPemeriksaanUSGMammaeActionPerformed);
         
+        MnHasilPemeriksaanSpirometri = new widget.MenuItem();
+        MnHasilPemeriksaanSpirometri.setBackground(new java.awt.Color(255, 255, 254));
+        MnHasilPemeriksaanSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); 
+        MnHasilPemeriksaanSpirometri.setForeground(new java.awt.Color(50, 50, 50));
+        MnHasilPemeriksaanSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); 
+        MnHasilPemeriksaanSpirometri.setText("Hasil Pemeriksaan Spirometri");
+        MnHasilPemeriksaanSpirometri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanSpirometri.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanSpirometri.setName("MnHasilPemeriksaanSpirometri");
+        MnHasilPemeriksaanSpirometri.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHasilPemeriksaanSpirometri.addActionListener(this::MnHasilPemeriksaanSpirometriActionPerformed);
+        
         MnHasilUSG = new widget.Menu();
         MnHasilUSG.setBackground(new java.awt.Color(255, 255, 254));
         MnHasilUSG.setForeground(new java.awt.Color(50, 50, 50));
@@ -19129,6 +19165,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnRMRawatJalan.add(MnHasilPemeriksaanSlitLamp);
         MnRMRawatJalan.add(MnHasilPemeriksaanOCT);
         MnRMRawatJalan.add(MnHasilPemeriksaanTreadmill);
+        MnRMRawatJalan.add(MnHasilPemeriksaanSpirometri);
         MnHasilEndoskopi.add(MnHasilEndoskopiFaringLaring);
         MnHasilEndoskopi.add(MnHasilEndoskopiHidung);
         MnHasilEndoskopi.add(MnHasilEndoskopiTelinga);

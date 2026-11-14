@@ -85,7 +85,15 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         initComponents();
         
         tabMode=new DefaultTableModel(null,new Object[]{
-                "No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","Kode Dokter","Nama Dokter","Tanggal","Kiriman Dari","Diagnosa Klinis","Tinggi (cm)","Berat (kg)","Etnis","Persamaan Referensi","Suhu (°C)","Tek. Barometrik (mmHg)","Obat Dikonsumsi","Bronkodilator Uji","FVC Pre","FVC Pred","FVC LLN","FVC %Pred","FVC Z","FVC Post","FVC Post %Pred","FVC %Perubahan","FEV1 Pre","FEV1 Pred","FEV1 LLN","FEV1 %Pred","FEV1 Z","FEV1 Post","FEV1 Post %Pred","FEV1 %Perubahan","Rasio Pre","Rasio Pred","Rasio LLN","Rasio %Pred","Rasio Z","Rasio Post","Rasio Post %Pred","Rasio %Perubahan","PEF Pre","PEF Pred","PEF LLN","PEF %Pred","PEF Z","PEF Post","PEF Post %Pred","PEF %Perubahan","FEF25-75 Pre","FEF25-75 Pred","FEF25-75 LLN","FEF25-75 %Pred","FEF25-75 Z","FEF25-75 Post","FEF25-75 Post %Pred","FEF25-75 %Perubahan","Manuver Pre","Grade FVC Pre","Grade FEV1 Pre","Manuver Post","Grade FVC Post","Grade FEV1 Post","Operator","Catatan Pelaksanaan","Pola Gangguan","Derajat","Respons Bronkodilator","Kesimpulan","Rekomendasi"
+                "No.Rawat","No.RM","Nama Pasien","Tgl.Lahir","Kode Dokter","Nama Dokter","Tanggal","Kiriman Dari","Diagnosa Klinis",
+                "Tinggi (cm)","Berat (kg)","Etnis","Persamaan Referensi","Suhu (°C)","Tek. Barometrik (mmHg)","Obat Dikonsumsi",
+                "Bronkodilator Uji","FVC Pre","FVC Pred","FVC LLN","FVC %Pred","FVC Z","FVC Post","FVC Post %Pred","FVC %Perubahan",
+                "FEV1 Pre","FEV1 Pred","FEV1 LLN","FEV1 %Pred","FEV1 Z","FEV1 Post","FEV1 Post %Pred","FEV1 %Perubahan","Rasio Pre",
+                "Rasio Pred","Rasio LLN","Rasio %Pred","Rasio Z","Rasio Post","Rasio Post %Pred","Rasio %Perubahan","PEF Pre",
+                "PEF Pred","PEF LLN","PEF %Pred","PEF Z","PEF Post","PEF Post %Pred","PEF %Perubahan","FEF25-75 Pre","FEF25-75 Pred",
+                "FEF25-75 LLN","FEF25-75 %Pred","FEF25-75 Z","FEF25-75 Post","FEF25-75 Post %Pred","FEF25-75 %Perubahan","Manuver Pre",
+                "Grade FVC Pre","Grade FEV1 Pre","Manuver Post","Grade FVC Post","Grade FEV1 Post","Operator","Catatan Pelaksanaan",
+                "Pola Gangguan","Derajat","Respons Bronkodilator","Kesimpulan","Rekomendasi"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -537,12 +545,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnPenilaianMedis.setBackground(new java.awt.Color(255, 255, 254));
-        MnPenilaianMedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPenilaianMedis.setForeground(new java.awt.Color(50, 50, 50));
         MnPenilaianMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnPenilaianMedis.setText("Formulir Hasil Pemeriksaan Spirometri");
+        MnPenilaianMedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPenilaianMedis.setName("MnPenilaianMedis"); // NOI18N
-        MnPenilaianMedis.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnPenilaianMedis.setPreferredSize(new java.awt.Dimension(240, 26));
         MnPenilaianMedis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPenilaianMedisActionPerformed(evt);
@@ -716,7 +724,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(750, 765));
+        FormInput.setPreferredSize(new java.awt.Dimension(750, 653));
         FormInput.setLayout(null);
 
         TNoRw.setHighlighter(null);
@@ -807,7 +815,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         label11.setBounds(528, 40, 52, 23);
 
         Tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2026 20:44:43" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026 09:39:58" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -821,7 +829,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         jLabel30.setText("Kiriman Dari :");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(0, 80, 120, 23);
+        jLabel30.setBounds(0, 80, 110, 23);
 
         KirimanDari.setFocusTraversalPolicyProvider(true);
         KirimanDari.setName("KirimanDari"); // NOI18N
@@ -831,7 +839,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(KirimanDari);
-        KirimanDari.setBounds(124, 80, 210, 23);
+        KirimanDari.setBounds(114, 80, 210, 23);
 
         jLabel32.setText("Diagnosa Klinis :");
         jLabel32.setName("jLabel32"); // NOI18N
@@ -852,91 +860,91 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         jLabel_GrupPre.setText("Pre-Bronkodilator");
         jLabel_GrupPre.setName("jLabel_GrupPre"); // NOI18N
         FormInput.add(jLabel_GrupPre);
-        jLabel_GrupPre.setBounds(124, 232, 381, 23);
+        jLabel_GrupPre.setBounds(114, 200, 376, 23);
 
         jLabel_GrupPost.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_GrupPost.setText("Post-Bronkodilator");
         jLabel_GrupPost.setName("jLabel_GrupPost"); // NOI18N
         FormInput.add(jLabel_GrupPost);
-        jLabel_GrupPost.setBounds(509, 232, 227, 23);
+        jLabel_GrupPost.setBounds(500, 200, 224, 23);
 
         jLabel_KolPre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPre.setText("Terukur");
         jLabel_KolPre.setName("jLabel_KolPre"); // NOI18N
         FormInput.add(jLabel_KolPre);
-        jLabel_KolPre.setBounds(124, 256, 73, 23);
+        jLabel_KolPre.setBounds(114, 220, 72, 23);
 
         jLabel_KolPred.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPred.setText("Prediksi");
         jLabel_KolPred.setName("jLabel_KolPred"); // NOI18N
         FormInput.add(jLabel_KolPred);
-        jLabel_KolPred.setBounds(201, 256, 73, 23);
+        jLabel_KolPred.setBounds(190, 220, 72, 23);
 
         jLabel_KolLLN.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolLLN.setText("LLN");
         jLabel_KolLLN.setName("jLabel_KolLLN"); // NOI18N
         FormInput.add(jLabel_KolLLN);
-        jLabel_KolLLN.setBounds(278, 256, 73, 23);
+        jLabel_KolLLN.setBounds(266, 220, 72, 23);
 
         jLabel_KolPersen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPersen.setText("%Pred");
         jLabel_KolPersen.setName("jLabel_KolPersen"); // NOI18N
         FormInput.add(jLabel_KolPersen);
-        jLabel_KolPersen.setBounds(355, 256, 73, 23);
+        jLabel_KolPersen.setBounds(342, 220, 72, 23);
 
         jLabel_KolZ.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolZ.setText("Z-score");
         jLabel_KolZ.setName("jLabel_KolZ"); // NOI18N
         FormInput.add(jLabel_KolZ);
-        jLabel_KolZ.setBounds(432, 256, 73, 23);
+        jLabel_KolZ.setBounds(418, 220, 72, 23);
 
         jLabel_KolPost.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPost.setText("Terukur");
         jLabel_KolPost.setName("jLabel_KolPost"); // NOI18N
         FormInput.add(jLabel_KolPost);
-        jLabel_KolPost.setBounds(509, 256, 73, 23);
+        jLabel_KolPost.setBounds(500, 220, 72, 23);
 
         jLabel_KolPostPersen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPostPersen.setText("%Pred");
         jLabel_KolPostPersen.setName("jLabel_KolPostPersen"); // NOI18N
         FormInput.add(jLabel_KolPostPersen);
-        jLabel_KolPostPersen.setBounds(586, 256, 73, 23);
+        jLabel_KolPostPersen.setBounds(576, 220, 72, 23);
 
         jLabel_KolPerubahan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_KolPerubahan.setText("%Perubahan");
         jLabel_KolPerubahan.setName("jLabel_KolPerubahan"); // NOI18N
         FormInput.add(jLabel_KolPerubahan);
-        jLabel_KolPerubahan.setBounds(663, 256, 73, 23);
+        jLabel_KolPerubahan.setBounds(652, 220, 72, 23);
 
         jLabel_ParFVC.setText("FVC (L)");
         jLabel_ParFVC.setName("jLabel_ParFVC"); // NOI18N
         FormInput.add(jLabel_ParFVC);
-        jLabel_ParFVC.setBounds(0, 282, 120, 23);
+        jLabel_ParFVC.setBounds(0, 240, 110, 23);
 
         jLabel_ParFEV1.setText("FEV1 (L)");
         jLabel_ParFEV1.setName("jLabel_ParFEV1"); // NOI18N
         FormInput.add(jLabel_ParFEV1);
-        jLabel_ParFEV1.setBounds(0, 310, 120, 23);
+        jLabel_ParFEV1.setBounds(0, 270, 110, 23);
 
         jLabel_ParRasio.setText("FEV1/FVC (%)");
         jLabel_ParRasio.setName("jLabel_ParRasio"); // NOI18N
         FormInput.add(jLabel_ParRasio);
-        jLabel_ParRasio.setBounds(0, 338, 120, 23);
+        jLabel_ParRasio.setBounds(0, 300, 110, 23);
 
         jLabel_ParPEF.setText("PEF (L/s)");
         jLabel_ParPEF.setName("jLabel_ParPEF"); // NOI18N
         FormInput.add(jLabel_ParPEF);
-        jLabel_ParPEF.setBounds(0, 366, 120, 23);
+        jLabel_ParPEF.setBounds(0, 330, 110, 23);
 
         jLabel_ParFEF2575.setText("FEF25-75 (L/s)");
         jLabel_ParFEF2575.setName("jLabel_ParFEF2575"); // NOI18N
         FormInput.add(jLabel_ParFEF2575);
-        jLabel_ParFEF2575.setBounds(0, 394, 120, 23);
+        jLabel_ParFEF2575.setBounds(0, 360, 110, 23);
 
         jLabel_TinggiBadan.setText("Tinggi (cm) :");
         jLabel_TinggiBadan.setName("jLabel_TinggiBadan"); // NOI18N
         FormInput.add(jLabel_TinggiBadan);
-        jLabel_TinggiBadan.setBounds(0, 110, 120, 23);
+        jLabel_TinggiBadan.setBounds(0, 110, 110, 23);
 
         TinggiBadan.setFocusTraversalPolicyProvider(true);
         TinggiBadan.setName("TinggiBadan"); // NOI18N
@@ -946,12 +954,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TinggiBadan);
-        TinggiBadan.setBounds(124, 110, 70, 23);
+        TinggiBadan.setBounds(114, 110, 45, 23);
 
         jLabel_BeratBadan.setText("Berat (kg) :");
         jLabel_BeratBadan.setName("jLabel_BeratBadan"); // NOI18N
         FormInput.add(jLabel_BeratBadan);
-        jLabel_BeratBadan.setBounds(210, 110, 90, 23);
+        jLabel_BeratBadan.setBounds(162, 110, 70, 23);
 
         BeratBadan.setFocusTraversalPolicyProvider(true);
         BeratBadan.setName("BeratBadan"); // NOI18N
@@ -961,12 +969,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(BeratBadan);
-        BeratBadan.setBounds(304, 110, 70, 23);
+        BeratBadan.setBounds(236, 110, 45, 23);
 
         jLabel_Etnis.setText("Etnis :");
         jLabel_Etnis.setName("jLabel_Etnis"); // NOI18N
         FormInput.add(jLabel_Etnis);
-        jLabel_Etnis.setBounds(390, 110, 50, 23);
+        jLabel_Etnis.setBounds(290, 110, 40, 23);
 
         Etnis.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Asia Tenggara", "Asia Timur Laut", "Kaukasia", "Afrika-Amerika", "Lainnya/Campuran" }));
         Etnis.setToolTipText("Kategori etnis mengikuti Global Lung Function Initiative (GLI) yang direkomendasikan ATS/ERS 2019");
@@ -977,12 +985,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Etnis);
-        Etnis.setBounds(444, 110, 280, 23);
+        Etnis.setBounds(334, 110, 130, 23);
 
         jLabel_PersamaanReferensi.setText("Ref. Prediksi :");
         jLabel_PersamaanReferensi.setName("jLabel_PersamaanReferensi"); // NOI18N
         FormInput.add(jLabel_PersamaanReferensi);
-        jLabel_PersamaanReferensi.setBounds(0, 140, 120, 23);
+        jLabel_PersamaanReferensi.setBounds(450, 110, 100, 23);
 
         PersamaanReferensi.setFocusTraversalPolicyProvider(true);
         PersamaanReferensi.setName("PersamaanReferensi"); // NOI18N
@@ -992,12 +1000,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PersamaanReferensi);
-        PersamaanReferensi.setBounds(124, 140, 170, 23);
+        PersamaanReferensi.setBounds(554, 110, 170, 23);
 
         jLabel_SuhuRuangan.setText("Suhu (°C) :");
         jLabel_SuhuRuangan.setName("jLabel_SuhuRuangan"); // NOI18N
         FormInput.add(jLabel_SuhuRuangan);
-        jLabel_SuhuRuangan.setBounds(300, 140, 70, 23);
+        jLabel_SuhuRuangan.setBounds(0, 140, 110, 23);
 
         SuhuRuangan.setFocusTraversalPolicyProvider(true);
         SuhuRuangan.setName("SuhuRuangan"); // NOI18N
@@ -1007,12 +1015,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(SuhuRuangan);
-        SuhuRuangan.setBounds(374, 140, 50, 23);
+        SuhuRuangan.setBounds(114, 140, 45, 23);
 
         jLabel_TekananBarometrik.setText("Tek. Barometrik (mmHg) :");
         jLabel_TekananBarometrik.setName("jLabel_TekananBarometrik"); // NOI18N
         FormInput.add(jLabel_TekananBarometrik);
-        jLabel_TekananBarometrik.setBounds(432, 140, 150, 23);
+        jLabel_TekananBarometrik.setBounds(160, 140, 140, 23);
 
         TekananBarometrik.setFocusTraversalPolicyProvider(true);
         TekananBarometrik.setName("TekananBarometrik"); // NOI18N
@@ -1022,12 +1030,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TekananBarometrik);
-        TekananBarometrik.setBounds(586, 140, 60, 23);
+        TekananBarometrik.setBounds(304, 140, 45, 23);
 
         jLabel_ObatDikonsumsi.setText("Obat Dikonsumsi :");
         jLabel_ObatDikonsumsi.setName("jLabel_ObatDikonsumsi"); // NOI18N
         FormInput.add(jLabel_ObatDikonsumsi);
-        jLabel_ObatDikonsumsi.setBounds(0, 170, 120, 23);
+        jLabel_ObatDikonsumsi.setBounds(350, 140, 105, 23);
 
         ObatDikonsumsi.setFocusTraversalPolicyProvider(true);
         ObatDikonsumsi.setName("ObatDikonsumsi"); // NOI18N
@@ -1037,12 +1045,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(ObatDikonsumsi);
-        ObatDikonsumsi.setBounds(124, 170, 600, 23);
+        ObatDikonsumsi.setBounds(459, 140, 265, 23);
 
         jLabel_Bronkodilator.setText("Bronkodilator Uji :");
         jLabel_Bronkodilator.setName("jLabel_Bronkodilator"); // NOI18N
         FormInput.add(jLabel_Bronkodilator);
-        jLabel_Bronkodilator.setBounds(0, 200, 120, 23);
+        jLabel_Bronkodilator.setBounds(0, 170, 110, 23);
 
         Bronkodilator.setFocusTraversalPolicyProvider(true);
         Bronkodilator.setName("Bronkodilator"); // NOI18N
@@ -1052,7 +1060,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Bronkodilator);
-        Bronkodilator.setBounds(124, 200, 600, 23);
+        Bronkodilator.setBounds(114, 170, 610, 23);
 
         FVCPre.setFocusTraversalPolicyProvider(true);
         FVCPre.setName("FVCPre"); // NOI18N
@@ -1062,7 +1070,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPre);
-        FVCPre.setBounds(124, 282, 73, 23);
+        FVCPre.setBounds(114, 240, 72, 23);
 
         FVCPred.setFocusTraversalPolicyProvider(true);
         FVCPred.setName("FVCPred"); // NOI18N
@@ -1072,7 +1080,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPred);
-        FVCPred.setBounds(201, 282, 73, 23);
+        FVCPred.setBounds(190, 240, 72, 23);
 
         FVCLLN.setFocusTraversalPolicyProvider(true);
         FVCLLN.setName("FVCLLN"); // NOI18N
@@ -1082,7 +1090,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCLLN);
-        FVCLLN.setBounds(278, 282, 73, 23);
+        FVCLLN.setBounds(266, 240, 72, 23);
 
         FVCPersen.setFocusTraversalPolicyProvider(true);
         FVCPersen.setName("FVCPersen"); // NOI18N
@@ -1092,7 +1100,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPersen);
-        FVCPersen.setBounds(355, 282, 73, 23);
+        FVCPersen.setBounds(342, 240, 72, 23);
 
         FVCZ.setFocusTraversalPolicyProvider(true);
         FVCZ.setName("FVCZ"); // NOI18N
@@ -1102,7 +1110,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCZ);
-        FVCZ.setBounds(432, 282, 73, 23);
+        FVCZ.setBounds(418, 240, 72, 23);
 
         FVCPost.setFocusTraversalPolicyProvider(true);
         FVCPost.setName("FVCPost"); // NOI18N
@@ -1112,7 +1120,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPost);
-        FVCPost.setBounds(509, 282, 73, 23);
+        FVCPost.setBounds(500, 240, 72, 23);
 
         FVCPostPersen.setFocusTraversalPolicyProvider(true);
         FVCPostPersen.setName("FVCPostPersen"); // NOI18N
@@ -1122,7 +1130,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPostPersen);
-        FVCPostPersen.setBounds(586, 282, 73, 23);
+        FVCPostPersen.setBounds(576, 240, 72, 23);
 
         FVCPerubahan.setFocusTraversalPolicyProvider(true);
         FVCPerubahan.setName("FVCPerubahan"); // NOI18N
@@ -1132,7 +1140,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FVCPerubahan);
-        FVCPerubahan.setBounds(663, 282, 73, 23);
+        FVCPerubahan.setBounds(652, 240, 72, 23);
 
         FEV1Pre.setFocusTraversalPolicyProvider(true);
         FEV1Pre.setName("FEV1Pre"); // NOI18N
@@ -1142,7 +1150,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Pre);
-        FEV1Pre.setBounds(124, 310, 73, 23);
+        FEV1Pre.setBounds(114, 270, 72, 23);
 
         FEV1Pred.setFocusTraversalPolicyProvider(true);
         FEV1Pred.setName("FEV1Pred"); // NOI18N
@@ -1152,7 +1160,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Pred);
-        FEV1Pred.setBounds(201, 310, 73, 23);
+        FEV1Pred.setBounds(190, 270, 72, 23);
 
         FEV1LLN.setFocusTraversalPolicyProvider(true);
         FEV1LLN.setName("FEV1LLN"); // NOI18N
@@ -1162,7 +1170,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1LLN);
-        FEV1LLN.setBounds(278, 310, 73, 23);
+        FEV1LLN.setBounds(266, 270, 72, 23);
 
         FEV1Persen.setFocusTraversalPolicyProvider(true);
         FEV1Persen.setName("FEV1Persen"); // NOI18N
@@ -1172,7 +1180,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Persen);
-        FEV1Persen.setBounds(355, 310, 73, 23);
+        FEV1Persen.setBounds(342, 270, 72, 23);
 
         FEV1Z.setFocusTraversalPolicyProvider(true);
         FEV1Z.setName("FEV1Z"); // NOI18N
@@ -1182,7 +1190,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Z);
-        FEV1Z.setBounds(432, 310, 73, 23);
+        FEV1Z.setBounds(418, 270, 72, 23);
 
         FEV1Post.setFocusTraversalPolicyProvider(true);
         FEV1Post.setName("FEV1Post"); // NOI18N
@@ -1192,7 +1200,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Post);
-        FEV1Post.setBounds(509, 310, 73, 23);
+        FEV1Post.setBounds(500, 270, 72, 23);
 
         FEV1PostPersen.setFocusTraversalPolicyProvider(true);
         FEV1PostPersen.setName("FEV1PostPersen"); // NOI18N
@@ -1202,7 +1210,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1PostPersen);
-        FEV1PostPersen.setBounds(586, 310, 73, 23);
+        FEV1PostPersen.setBounds(576, 270, 72, 23);
 
         FEV1Perubahan.setFocusTraversalPolicyProvider(true);
         FEV1Perubahan.setName("FEV1Perubahan"); // NOI18N
@@ -1212,7 +1220,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEV1Perubahan);
-        FEV1Perubahan.setBounds(663, 310, 73, 23);
+        FEV1Perubahan.setBounds(652, 270, 72, 23);
 
         RasioPre.setFocusTraversalPolicyProvider(true);
         RasioPre.setName("RasioPre"); // NOI18N
@@ -1222,7 +1230,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPre);
-        RasioPre.setBounds(124, 338, 73, 23);
+        RasioPre.setBounds(114, 300, 72, 23);
 
         RasioPred.setFocusTraversalPolicyProvider(true);
         RasioPred.setName("RasioPred"); // NOI18N
@@ -1232,7 +1240,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPred);
-        RasioPred.setBounds(201, 338, 73, 23);
+        RasioPred.setBounds(190, 300, 72, 23);
 
         RasioLLN.setFocusTraversalPolicyProvider(true);
         RasioLLN.setName("RasioLLN"); // NOI18N
@@ -1242,7 +1250,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioLLN);
-        RasioLLN.setBounds(278, 338, 73, 23);
+        RasioLLN.setBounds(266, 300, 72, 23);
 
         RasioPersen.setFocusTraversalPolicyProvider(true);
         RasioPersen.setName("RasioPersen"); // NOI18N
@@ -1252,7 +1260,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPersen);
-        RasioPersen.setBounds(355, 338, 73, 23);
+        RasioPersen.setBounds(342, 300, 72, 23);
 
         RasioZ.setFocusTraversalPolicyProvider(true);
         RasioZ.setName("RasioZ"); // NOI18N
@@ -1262,7 +1270,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioZ);
-        RasioZ.setBounds(432, 338, 73, 23);
+        RasioZ.setBounds(418, 300, 72, 23);
 
         RasioPost.setFocusTraversalPolicyProvider(true);
         RasioPost.setName("RasioPost"); // NOI18N
@@ -1272,7 +1280,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPost);
-        RasioPost.setBounds(509, 338, 73, 23);
+        RasioPost.setBounds(500, 300, 72, 23);
 
         RasioPostPersen.setFocusTraversalPolicyProvider(true);
         RasioPostPersen.setName("RasioPostPersen"); // NOI18N
@@ -1282,7 +1290,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPostPersen);
-        RasioPostPersen.setBounds(586, 338, 73, 23);
+        RasioPostPersen.setBounds(576, 300, 72, 23);
 
         RasioPerubahan.setFocusTraversalPolicyProvider(true);
         RasioPerubahan.setName("RasioPerubahan"); // NOI18N
@@ -1292,7 +1300,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(RasioPerubahan);
-        RasioPerubahan.setBounds(663, 338, 73, 23);
+        RasioPerubahan.setBounds(652, 300, 72, 23);
 
         PEFPre.setFocusTraversalPolicyProvider(true);
         PEFPre.setName("PEFPre"); // NOI18N
@@ -1302,7 +1310,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPre);
-        PEFPre.setBounds(124, 366, 73, 23);
+        PEFPre.setBounds(114, 330, 72, 23);
 
         PEFPred.setFocusTraversalPolicyProvider(true);
         PEFPred.setName("PEFPred"); // NOI18N
@@ -1312,7 +1320,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPred);
-        PEFPred.setBounds(201, 366, 73, 23);
+        PEFPred.setBounds(190, 330, 72, 23);
 
         PEFLLN.setFocusTraversalPolicyProvider(true);
         PEFLLN.setName("PEFLLN"); // NOI18N
@@ -1322,7 +1330,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFLLN);
-        PEFLLN.setBounds(278, 366, 73, 23);
+        PEFLLN.setBounds(266, 330, 72, 23);
 
         PEFPersen.setFocusTraversalPolicyProvider(true);
         PEFPersen.setName("PEFPersen"); // NOI18N
@@ -1332,7 +1340,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPersen);
-        PEFPersen.setBounds(355, 366, 73, 23);
+        PEFPersen.setBounds(342, 330, 72, 23);
 
         PEFZ.setFocusTraversalPolicyProvider(true);
         PEFZ.setName("PEFZ"); // NOI18N
@@ -1342,7 +1350,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFZ);
-        PEFZ.setBounds(432, 366, 73, 23);
+        PEFZ.setBounds(418, 330, 72, 23);
 
         PEFPost.setFocusTraversalPolicyProvider(true);
         PEFPost.setName("PEFPost"); // NOI18N
@@ -1352,7 +1360,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPost);
-        PEFPost.setBounds(509, 366, 73, 23);
+        PEFPost.setBounds(500, 330, 72, 23);
 
         PEFPostPersen.setFocusTraversalPolicyProvider(true);
         PEFPostPersen.setName("PEFPostPersen"); // NOI18N
@@ -1362,7 +1370,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPostPersen);
-        PEFPostPersen.setBounds(586, 366, 73, 23);
+        PEFPostPersen.setBounds(576, 330, 72, 23);
 
         PEFPerubahan.setFocusTraversalPolicyProvider(true);
         PEFPerubahan.setName("PEFPerubahan"); // NOI18N
@@ -1372,7 +1380,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PEFPerubahan);
-        PEFPerubahan.setBounds(663, 366, 73, 23);
+        PEFPerubahan.setBounds(652, 330, 72, 23);
 
         FEF2575Pre.setFocusTraversalPolicyProvider(true);
         FEF2575Pre.setName("FEF2575Pre"); // NOI18N
@@ -1382,7 +1390,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Pre);
-        FEF2575Pre.setBounds(124, 394, 73, 23);
+        FEF2575Pre.setBounds(114, 360, 72, 23);
 
         FEF2575Pred.setFocusTraversalPolicyProvider(true);
         FEF2575Pred.setName("FEF2575Pred"); // NOI18N
@@ -1392,7 +1400,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Pred);
-        FEF2575Pred.setBounds(201, 394, 73, 23);
+        FEF2575Pred.setBounds(190, 360, 72, 23);
 
         FEF2575LLN.setFocusTraversalPolicyProvider(true);
         FEF2575LLN.setName("FEF2575LLN"); // NOI18N
@@ -1402,7 +1410,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575LLN);
-        FEF2575LLN.setBounds(278, 394, 73, 23);
+        FEF2575LLN.setBounds(266, 360, 72, 23);
 
         FEF2575Persen.setFocusTraversalPolicyProvider(true);
         FEF2575Persen.setName("FEF2575Persen"); // NOI18N
@@ -1412,7 +1420,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Persen);
-        FEF2575Persen.setBounds(355, 394, 73, 23);
+        FEF2575Persen.setBounds(342, 360, 72, 23);
 
         FEF2575Z.setFocusTraversalPolicyProvider(true);
         FEF2575Z.setName("FEF2575Z"); // NOI18N
@@ -1422,7 +1430,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Z);
-        FEF2575Z.setBounds(432, 394, 73, 23);
+        FEF2575Z.setBounds(418, 360, 72, 23);
 
         FEF2575Post.setFocusTraversalPolicyProvider(true);
         FEF2575Post.setName("FEF2575Post"); // NOI18N
@@ -1432,7 +1440,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Post);
-        FEF2575Post.setBounds(509, 394, 73, 23);
+        FEF2575Post.setBounds(500, 360, 72, 23);
 
         FEF2575PostPersen.setFocusTraversalPolicyProvider(true);
         FEF2575PostPersen.setName("FEF2575PostPersen"); // NOI18N
@@ -1442,7 +1450,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575PostPersen);
-        FEF2575PostPersen.setBounds(586, 394, 73, 23);
+        FEF2575PostPersen.setBounds(576, 360, 72, 23);
 
         FEF2575Perubahan.setFocusTraversalPolicyProvider(true);
         FEF2575Perubahan.setName("FEF2575Perubahan"); // NOI18N
@@ -1452,12 +1460,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(FEF2575Perubahan);
-        FEF2575Perubahan.setBounds(663, 394, 73, 23);
+        FEF2575Perubahan.setBounds(652, 360, 72, 23);
 
         jLabel_ManuverPre.setText("Manuver Pre :");
         jLabel_ManuverPre.setName("jLabel_ManuverPre"); // NOI18N
         FormInput.add(jLabel_ManuverPre);
-        jLabel_ManuverPre.setBounds(0, 430, 120, 23);
+        jLabel_ManuverPre.setBounds(0, 390, 110, 23);
 
         ManuverPre.setFocusTraversalPolicyProvider(true);
         ManuverPre.setName("ManuverPre"); // NOI18N
@@ -1467,12 +1475,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(ManuverPre);
-        ManuverPre.setBounds(124, 430, 40, 23);
+        ManuverPre.setBounds(114, 390, 40, 23);
 
         jLabel_GradeFVCPre.setText("Grade FVC :");
         jLabel_GradeFVCPre.setName("jLabel_GradeFVCPre"); // NOI18N
         FormInput.add(jLabel_GradeFVCPre);
-        jLabel_GradeFVCPre.setBounds(180, 430, 80, 23);
+        jLabel_GradeFVCPre.setBounds(150, 390, 78, 23);
 
         GradeFVCPre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "A", "B", "C", "D", "E", "U", "F" }));
         GradeFVCPre.setToolTipText("Grade kualitas ATS/ERS 2019: A (>=3 manuver acceptable, repeatability <=0,15 L), B (2 acceptable, <=0,15 L), C (>=2, <=0,20 L), D (>=2, <=0,25 L), E (>=2 atau 1, >0,25 L), U (0 acceptable, >=1 usable), F (tidak ada)");
@@ -1483,12 +1491,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(GradeFVCPre);
-        GradeFVCPre.setBounds(264, 430, 60, 23);
+        GradeFVCPre.setBounds(232, 390, 50, 23);
 
         jLabel_GradeFEV1Pre.setText("Grade FEV1 :");
         jLabel_GradeFEV1Pre.setName("jLabel_GradeFEV1Pre"); // NOI18N
         FormInput.add(jLabel_GradeFEV1Pre);
-        jLabel_GradeFEV1Pre.setBounds(340, 430, 80, 23);
+        jLabel_GradeFEV1Pre.setBounds(281, 390, 80, 23);
 
         GradeFEV1Pre.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "A", "B", "C", "D", "E", "U", "F" }));
         GradeFEV1Pre.setToolTipText("Grade kualitas ATS/ERS 2019: A (>=3 manuver acceptable, repeatability <=0,15 L), B (2 acceptable, <=0,15 L), C (>=2, <=0,20 L), D (>=2, <=0,25 L), E (>=2 atau 1, >0,25 L), U (0 acceptable, >=1 usable), F (tidak ada)");
@@ -1499,12 +1507,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(GradeFEV1Pre);
-        GradeFEV1Pre.setBounds(424, 430, 60, 23);
+        GradeFEV1Pre.setBounds(365, 390, 50, 23);
 
         jLabel_ManuverPost.setText("Manuver Post :");
         jLabel_ManuverPost.setName("jLabel_ManuverPost"); // NOI18N
         FormInput.add(jLabel_ManuverPost);
-        jLabel_ManuverPost.setBounds(0, 460, 120, 23);
+        jLabel_ManuverPost.setBounds(0, 420, 110, 23);
 
         ManuverPost.setFocusTraversalPolicyProvider(true);
         ManuverPost.setName("ManuverPost"); // NOI18N
@@ -1514,12 +1522,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(ManuverPost);
-        ManuverPost.setBounds(124, 460, 40, 23);
+        ManuverPost.setBounds(114, 420, 40, 23);
 
         jLabel_GradeFVCPost.setText("Grade FVC :");
         jLabel_GradeFVCPost.setName("jLabel_GradeFVCPost"); // NOI18N
         FormInput.add(jLabel_GradeFVCPost);
-        jLabel_GradeFVCPost.setBounds(180, 460, 80, 23);
+        jLabel_GradeFVCPost.setBounds(150, 420, 78, 23);
 
         GradeFVCPost.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "A", "B", "C", "D", "E", "U", "F" }));
         GradeFVCPost.setToolTipText("Grade kualitas ATS/ERS 2019: A (>=3 manuver acceptable, repeatability <=0,15 L), B (2 acceptable, <=0,15 L), C (>=2, <=0,20 L), D (>=2, <=0,25 L), E (>=2 atau 1, >0,25 L), U (0 acceptable, >=1 usable), F (tidak ada)");
@@ -1530,12 +1538,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(GradeFVCPost);
-        GradeFVCPost.setBounds(264, 460, 60, 23);
+        GradeFVCPost.setBounds(232, 420, 50, 23);
 
         jLabel_GradeFEV1Post.setText("Grade FEV1 :");
         jLabel_GradeFEV1Post.setName("jLabel_GradeFEV1Post"); // NOI18N
         FormInput.add(jLabel_GradeFEV1Post);
-        jLabel_GradeFEV1Post.setBounds(340, 460, 80, 23);
+        jLabel_GradeFEV1Post.setBounds(281, 420, 80, 23);
 
         GradeFEV1Post.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "A", "B", "C", "D", "E", "U", "F" }));
         GradeFEV1Post.setToolTipText("Grade kualitas ATS/ERS 2019: A (>=3 manuver acceptable, repeatability <=0,15 L), B (2 acceptable, <=0,15 L), C (>=2, <=0,20 L), D (>=2, <=0,25 L), E (>=2 atau 1, >0,25 L), U (0 acceptable, >=1 usable), F (tidak ada)");
@@ -1546,12 +1554,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(GradeFEV1Post);
-        GradeFEV1Post.setBounds(424, 460, 60, 23);
+        GradeFEV1Post.setBounds(365, 420, 50, 23);
 
         jLabel_Operator.setText("Operator :");
         jLabel_Operator.setName("jLabel_Operator"); // NOI18N
         FormInput.add(jLabel_Operator);
-        jLabel_Operator.setBounds(0, 490, 120, 23);
+        jLabel_Operator.setBounds(420, 390, 78, 23);
 
         Operator.setFocusTraversalPolicyProvider(true);
         Operator.setName("Operator"); // NOI18N
@@ -1561,12 +1569,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Operator);
-        Operator.setBounds(124, 490, 300, 23);
+        Operator.setBounds(502, 390, 222, 23);
 
         jLabel_CatatanPelaksanaan.setText("Catatan Uji :");
         jLabel_CatatanPelaksanaan.setName("jLabel_CatatanPelaksanaan"); // NOI18N
         FormInput.add(jLabel_CatatanPelaksanaan);
-        jLabel_CatatanPelaksanaan.setBounds(0, 520, 120, 23);
+        jLabel_CatatanPelaksanaan.setBounds(0, 450, 110, 23);
 
         scrollPane_CatatanPelaksanaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane_CatatanPelaksanaan.setName("scrollPane_CatatanPelaksanaan"); // NOI18N
@@ -1583,12 +1591,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         scrollPane_CatatanPelaksanaan.setViewportView(CatatanPelaksanaan);
 
         FormInput.add(scrollPane_CatatanPelaksanaan);
-        scrollPane_CatatanPelaksanaan.setBounds(124, 520, 600, 63);
+        scrollPane_CatatanPelaksanaan.setBounds(114, 450, 610, 63);
 
         jLabel_PolaGangguan.setText("Pola Gangguan :");
         jLabel_PolaGangguan.setName("jLabel_PolaGangguan"); // NOI18N
         FormInput.add(jLabel_PolaGangguan);
-        jLabel_PolaGangguan.setBounds(0, 595, 120, 23);
+        jLabel_PolaGangguan.setBounds(0, 520, 110, 23);
 
         PolaGangguan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Normal", "Obstruksi", "Restriksi (dugaan)", "Campuran (dugaan)", "Non-spesifik" }));
         PolaGangguan.setToolTipText("ERS/ATS 2022: obstruksi = FEV1/FVC < LLN; restriksi (dugaan) = FEV1/FVC normal dengan FVC < LLN; campuran (dugaan) = FEV1/FVC < LLN dan FVC < LLN. Restriksi dan campuran pasti perlu volume paru (TLC)");
@@ -1599,12 +1607,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(PolaGangguan);
-        PolaGangguan.setBounds(124, 595, 200, 23);
+        PolaGangguan.setBounds(114, 520, 150, 23);
 
         jLabel_Derajat.setText("Derajat :");
         jLabel_Derajat.setName("jLabel_Derajat"); // NOI18N
         FormInput.add(jLabel_Derajat);
-        jLabel_Derajat.setBounds(340, 595, 70, 23);
+        jLabel_Derajat.setBounds(300, 520, 70, 23);
 
         Derajat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ringan", "Sedang", "Berat" }));
         Derajat.setToolTipText("ERS/ATS 2022, berdasarkan z-score FEV1: ringan -1,65 s.d. -2,5; sedang -2,51 s.d. -4,0; berat < -4,1");
@@ -1615,14 +1623,14 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Derajat);
-        Derajat.setBounds(414, 595, 150, 23);
+        Derajat.setBounds(374, 520, 90, 23);
 
         jLabel_ResponsBronkodilator.setText("Respons BD :");
         jLabel_ResponsBronkodilator.setName("jLabel_ResponsBronkodilator"); // NOI18N
         FormInput.add(jLabel_ResponsBronkodilator);
-        jLabel_ResponsBronkodilator.setBounds(0, 625, 120, 23);
+        jLabel_ResponsBronkodilator.setBounds(500, 520, 90, 23);
 
-        ResponsBronkodilator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak dilakukan", "Tidak signifikan", "Signifikan" }));
+        ResponsBronkodilator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak Dilakukan", "Tidak Signifikan", "Signifikan" }));
         ResponsBronkodilator.setToolTipText("ERS/ATS 2022: signifikan bila FEV1 dan/atau FVC naik >= 10% dari nilai prediksi (kriteria 2005: >= 12% dan >= 200 mL dari nilai awal)");
         ResponsBronkodilator.setName("ResponsBronkodilator"); // NOI18N
         ResponsBronkodilator.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1631,12 +1639,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(ResponsBronkodilator);
-        ResponsBronkodilator.setBounds(124, 625, 200, 23);
+        ResponsBronkodilator.setBounds(594, 520, 130, 23);
 
         jLabel_Kesimpulan.setText("Kesimpulan :");
         jLabel_Kesimpulan.setName("jLabel_Kesimpulan"); // NOI18N
         FormInput.add(jLabel_Kesimpulan);
-        jLabel_Kesimpulan.setBounds(0, 655, 120, 23);
+        jLabel_Kesimpulan.setBounds(0, 550, 110, 23);
 
         scrollPane_Kesimpulan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         scrollPane_Kesimpulan.setName("scrollPane_Kesimpulan"); // NOI18N
@@ -1653,12 +1661,12 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         scrollPane_Kesimpulan.setViewportView(Kesimpulan);
 
         FormInput.add(scrollPane_Kesimpulan);
-        scrollPane_Kesimpulan.setBounds(124, 655, 600, 63);
+        scrollPane_Kesimpulan.setBounds(114, 550, 610, 63);
 
         jLabel_Rekomendasi.setText("Rekomendasi :");
         jLabel_Rekomendasi.setName("jLabel_Rekomendasi"); // NOI18N
         FormInput.add(jLabel_Rekomendasi);
-        jLabel_Rekomendasi.setBounds(0, 725, 120, 23);
+        jLabel_Rekomendasi.setBounds(0, 620, 110, 23);
 
         Rekomendasi.setFocusTraversalPolicyProvider(true);
         Rekomendasi.setName("Rekomendasi"); // NOI18N
@@ -1668,7 +1676,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Rekomendasi);
-        Rekomendasi.setBounds(124, 725, 600, 23);
+        Rekomendasi.setBounds(114, 620, 610, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1711,7 +1719,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2026" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -1724,7 +1732,7 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2026" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-11-2026" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
@@ -2395,8 +2403,8 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
             param.put("logo",Sequel.cariGambar("select setting.logo from setting")); 
             finger=Sequel.cariIsi("select sha1(sidikjari.sidikjari) from sidikjari inner join pegawai on pegawai.id=sidikjari.id where pegawai.nik=?",tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
             param.put("finger","Dikeluarkan di "+akses.getnamars()+", Kabupaten/Kota "+akses.getkabupatenrs()+"\nDitandatangani secara elektronik oleh "+tbObat.getValueAt(tbObat.getSelectedRow(),5).toString()+"\nID "+(finger.equals("")?tbObat.getValueAt(tbObat.getSelectedRow(),4).toString():finger)+"\n"+Valid.SetTgl3(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString())); 
-            
-            Valid.MyReportqry("rptCetakHasilPemeriksaanSpirometri.jasper","report","::[ Formulir Hasil Pemeriksaan Spirometri ]::",
+            Valid.MyReportqry(
+                "rptCetakHasilPemeriksaanSpirometri.jasper","report","::[ Formulir Hasil Pemeriksaan Spirometri ]::",
                 "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,hasil_pemeriksaan_spirometri.tanggal,"+
                 "hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
                 "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
@@ -2418,10 +2426,13 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
                 "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
                 "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
                 "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
-                "hasil_pemeriksaan_spirometri.kesimpulan,"+
-                "hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                "hasil_pemeriksaan_spirometri.kesimpulan,hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa "+
+                "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
                 "inner join hasil_pemeriksaan_spirometri on reg_periksa.no_rawat=hasil_pemeriksaan_spirometri.no_rawat "+
-                "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter where hasil_pemeriksaan_spirometri.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",param);
+                "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter "+
+                "where hasil_pemeriksaan_spirometri.no_rawat='"+tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()+"'",
+                param
+            );
         }
     }//GEN-LAST:event_MnPenilaianMedisActionPerformed
 
@@ -2992,61 +3003,63 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
         try{
             if(TCari.getText().trim().equals("")){
                 ps=koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,hasil_pemeriksaan_spirometri.tanggal,"+
-                        "hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
-                        "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
-                        "hasil_pemeriksaan_spirometri.persamaan_referensi,hasil_pemeriksaan_spirometri.suhu_ruangan,hasil_pemeriksaan_spirometri.tekanan_barometrik,"+
-                        "hasil_pemeriksaan_spirometri.obat_dikonsumsi,hasil_pemeriksaan_spirometri.bronkodilator,hasil_pemeriksaan_spirometri.fvc_pre,"+
-                        "hasil_pemeriksaan_spirometri.fvc_pred,hasil_pemeriksaan_spirometri.fvc_lln,hasil_pemeriksaan_spirometri.fvc_persen,hasil_pemeriksaan_spirometri.fvc_z,"+
-                        "hasil_pemeriksaan_spirometri.fvc_post,hasil_pemeriksaan_spirometri.fvc_post_persen,hasil_pemeriksaan_spirometri.fvc_perubahan,"+
-                        "hasil_pemeriksaan_spirometri.fev1_pre,hasil_pemeriksaan_spirometri.fev1_pred,hasil_pemeriksaan_spirometri.fev1_lln,"+
-                        "hasil_pemeriksaan_spirometri.fev1_persen,hasil_pemeriksaan_spirometri.fev1_z,hasil_pemeriksaan_spirometri.fev1_post,"+
-                        "hasil_pemeriksaan_spirometri.fev1_post_persen,hasil_pemeriksaan_spirometri.fev1_perubahan,hasil_pemeriksaan_spirometri.rasio_pre,"+
-                        "hasil_pemeriksaan_spirometri.rasio_pred,hasil_pemeriksaan_spirometri.rasio_lln,hasil_pemeriksaan_spirometri.rasio_persen,"+
-                        "hasil_pemeriksaan_spirometri.rasio_z,hasil_pemeriksaan_spirometri.rasio_post,hasil_pemeriksaan_spirometri.rasio_post_persen,"+
-                        "hasil_pemeriksaan_spirometri.rasio_perubahan,hasil_pemeriksaan_spirometri.pef_pre,hasil_pemeriksaan_spirometri.pef_pred,"+
-                        "hasil_pemeriksaan_spirometri.pef_lln,hasil_pemeriksaan_spirometri.pef_persen,hasil_pemeriksaan_spirometri.pef_z,hasil_pemeriksaan_spirometri.pef_post,"+
-                        "hasil_pemeriksaan_spirometri.pef_post_persen,hasil_pemeriksaan_spirometri.pef_perubahan,hasil_pemeriksaan_spirometri.fef2575_pre,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_pred,hasil_pemeriksaan_spirometri.fef2575_lln,hasil_pemeriksaan_spirometri.fef2575_persen,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_z,hasil_pemeriksaan_spirometri.fef2575_post,hasil_pemeriksaan_spirometri.fef2575_post_persen,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_perubahan,hasil_pemeriksaan_spirometri.manuver_pre,hasil_pemeriksaan_spirometri.grade_fvc_pre,"+
-                        "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
-                        "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
-                        "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
-                        "hasil_pemeriksaan_spirometri.kesimpulan,"+
-                        "hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join hasil_pemeriksaan_spirometri on reg_periksa.no_rawat=hasil_pemeriksaan_spirometri.no_rawat "+
-                        "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter where "+
-                        "hasil_pemeriksaan_spirometri.tanggal between ? and ? order by hasil_pemeriksaan_spirometri.tanggal");
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,hasil_pemeriksaan_spirometri.tanggal,"+
+                    "hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
+                    "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
+                    "hasil_pemeriksaan_spirometri.persamaan_referensi,hasil_pemeriksaan_spirometri.suhu_ruangan,hasil_pemeriksaan_spirometri.tekanan_barometrik,"+
+                    "hasil_pemeriksaan_spirometri.obat_dikonsumsi,hasil_pemeriksaan_spirometri.bronkodilator,hasil_pemeriksaan_spirometri.fvc_pre,"+
+                    "hasil_pemeriksaan_spirometri.fvc_pred,hasil_pemeriksaan_spirometri.fvc_lln,hasil_pemeriksaan_spirometri.fvc_persen,hasil_pemeriksaan_spirometri.fvc_z,"+
+                    "hasil_pemeriksaan_spirometri.fvc_post,hasil_pemeriksaan_spirometri.fvc_post_persen,hasil_pemeriksaan_spirometri.fvc_perubahan,"+
+                    "hasil_pemeriksaan_spirometri.fev1_pre,hasil_pemeriksaan_spirometri.fev1_pred,hasil_pemeriksaan_spirometri.fev1_lln,"+
+                    "hasil_pemeriksaan_spirometri.fev1_persen,hasil_pemeriksaan_spirometri.fev1_z,hasil_pemeriksaan_spirometri.fev1_post,"+
+                    "hasil_pemeriksaan_spirometri.fev1_post_persen,hasil_pemeriksaan_spirometri.fev1_perubahan,hasil_pemeriksaan_spirometri.rasio_pre,"+
+                    "hasil_pemeriksaan_spirometri.rasio_pred,hasil_pemeriksaan_spirometri.rasio_lln,hasil_pemeriksaan_spirometri.rasio_persen,"+
+                    "hasil_pemeriksaan_spirometri.rasio_z,hasil_pemeriksaan_spirometri.rasio_post,hasil_pemeriksaan_spirometri.rasio_post_persen,"+
+                    "hasil_pemeriksaan_spirometri.rasio_perubahan,hasil_pemeriksaan_spirometri.pef_pre,hasil_pemeriksaan_spirometri.pef_pred,"+
+                    "hasil_pemeriksaan_spirometri.pef_lln,hasil_pemeriksaan_spirometri.pef_persen,hasil_pemeriksaan_spirometri.pef_z,hasil_pemeriksaan_spirometri.pef_post,"+
+                    "hasil_pemeriksaan_spirometri.pef_post_persen,hasil_pemeriksaan_spirometri.pef_perubahan,hasil_pemeriksaan_spirometri.fef2575_pre,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_pred,hasil_pemeriksaan_spirometri.fef2575_lln,hasil_pemeriksaan_spirometri.fef2575_persen,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_z,hasil_pemeriksaan_spirometri.fef2575_post,hasil_pemeriksaan_spirometri.fef2575_post_persen,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_perubahan,hasil_pemeriksaan_spirometri.manuver_pre,hasil_pemeriksaan_spirometri.grade_fvc_pre,"+
+                    "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
+                    "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
+                    "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
+                    "hasil_pemeriksaan_spirometri.kesimpulan,hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa "+
+                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join hasil_pemeriksaan_spirometri on reg_periksa.no_rawat=hasil_pemeriksaan_spirometri.no_rawat "+
+                    "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter "+
+                    "where hasil_pemeriksaan_spirometri.tanggal between ? and ? order by hasil_pemeriksaan_spirometri.tanggal"
+                );
             }else{
                 ps=koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,hasil_pemeriksaan_spirometri.tanggal,"+
-                        "hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
-                        "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
-                        "hasil_pemeriksaan_spirometri.persamaan_referensi,hasil_pemeriksaan_spirometri.suhu_ruangan,hasil_pemeriksaan_spirometri.tekanan_barometrik,"+
-                        "hasil_pemeriksaan_spirometri.obat_dikonsumsi,hasil_pemeriksaan_spirometri.bronkodilator,hasil_pemeriksaan_spirometri.fvc_pre,"+
-                        "hasil_pemeriksaan_spirometri.fvc_pred,hasil_pemeriksaan_spirometri.fvc_lln,hasil_pemeriksaan_spirometri.fvc_persen,hasil_pemeriksaan_spirometri.fvc_z,"+
-                        "hasil_pemeriksaan_spirometri.fvc_post,hasil_pemeriksaan_spirometri.fvc_post_persen,hasil_pemeriksaan_spirometri.fvc_perubahan,"+
-                        "hasil_pemeriksaan_spirometri.fev1_pre,hasil_pemeriksaan_spirometri.fev1_pred,hasil_pemeriksaan_spirometri.fev1_lln,"+
-                        "hasil_pemeriksaan_spirometri.fev1_persen,hasil_pemeriksaan_spirometri.fev1_z,hasil_pemeriksaan_spirometri.fev1_post,"+
-                        "hasil_pemeriksaan_spirometri.fev1_post_persen,hasil_pemeriksaan_spirometri.fev1_perubahan,hasil_pemeriksaan_spirometri.rasio_pre,"+
-                        "hasil_pemeriksaan_spirometri.rasio_pred,hasil_pemeriksaan_spirometri.rasio_lln,hasil_pemeriksaan_spirometri.rasio_persen,"+
-                        "hasil_pemeriksaan_spirometri.rasio_z,hasil_pemeriksaan_spirometri.rasio_post,hasil_pemeriksaan_spirometri.rasio_post_persen,"+
-                        "hasil_pemeriksaan_spirometri.rasio_perubahan,hasil_pemeriksaan_spirometri.pef_pre,hasil_pemeriksaan_spirometri.pef_pred,"+
-                        "hasil_pemeriksaan_spirometri.pef_lln,hasil_pemeriksaan_spirometri.pef_persen,hasil_pemeriksaan_spirometri.pef_z,hasil_pemeriksaan_spirometri.pef_post,"+
-                        "hasil_pemeriksaan_spirometri.pef_post_persen,hasil_pemeriksaan_spirometri.pef_perubahan,hasil_pemeriksaan_spirometri.fef2575_pre,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_pred,hasil_pemeriksaan_spirometri.fef2575_lln,hasil_pemeriksaan_spirometri.fef2575_persen,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_z,hasil_pemeriksaan_spirometri.fef2575_post,hasil_pemeriksaan_spirometri.fef2575_post_persen,"+
-                        "hasil_pemeriksaan_spirometri.fef2575_perubahan,hasil_pemeriksaan_spirometri.manuver_pre,hasil_pemeriksaan_spirometri.grade_fvc_pre,"+
-                        "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
-                        "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
-                        "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
-                        "hasil_pemeriksaan_spirometri.kesimpulan,"+
-                        "hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                        "inner join hasil_pemeriksaan_spirometri on reg_periksa.no_rawat=hasil_pemeriksaan_spirometri.no_rawat "+
-                        "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter where "+
-                        "hasil_pemeriksaan_spirometri.tanggal between ? and ? and (reg_periksa.no_rawat like ? or pasien.no_rkm_medis like ? or pasien.nm_pasien like ? or "+
-                        "hasil_pemeriksaan_spirometri.kd_dokter like ? or dokter.nm_dokter like ?) order by hasil_pemeriksaan_spirometri.tanggal");
+                    "select reg_periksa.no_rawat,pasien.no_rkm_medis,pasien.nm_pasien,pasien.tgl_lahir,hasil_pemeriksaan_spirometri.tanggal,"+
+                    "hasil_pemeriksaan_spirometri.kd_dokter,dokter.nm_dokter,hasil_pemeriksaan_spirometri.diagnosa_klinis,hasil_pemeriksaan_spirometri.kiriman_dari,"+
+                    "hasil_pemeriksaan_spirometri.tinggi_badan,hasil_pemeriksaan_spirometri.berat_badan,hasil_pemeriksaan_spirometri.etnis,"+
+                    "hasil_pemeriksaan_spirometri.persamaan_referensi,hasil_pemeriksaan_spirometri.suhu_ruangan,hasil_pemeriksaan_spirometri.tekanan_barometrik,"+
+                    "hasil_pemeriksaan_spirometri.obat_dikonsumsi,hasil_pemeriksaan_spirometri.bronkodilator,hasil_pemeriksaan_spirometri.fvc_pre,"+
+                    "hasil_pemeriksaan_spirometri.fvc_pred,hasil_pemeriksaan_spirometri.fvc_lln,hasil_pemeriksaan_spirometri.fvc_persen,hasil_pemeriksaan_spirometri.fvc_z,"+
+                    "hasil_pemeriksaan_spirometri.fvc_post,hasil_pemeriksaan_spirometri.fvc_post_persen,hasil_pemeriksaan_spirometri.fvc_perubahan,"+
+                    "hasil_pemeriksaan_spirometri.fev1_pre,hasil_pemeriksaan_spirometri.fev1_pred,hasil_pemeriksaan_spirometri.fev1_lln,"+
+                    "hasil_pemeriksaan_spirometri.fev1_persen,hasil_pemeriksaan_spirometri.fev1_z,hasil_pemeriksaan_spirometri.fev1_post,"+
+                    "hasil_pemeriksaan_spirometri.fev1_post_persen,hasil_pemeriksaan_spirometri.fev1_perubahan,hasil_pemeriksaan_spirometri.rasio_pre,"+
+                    "hasil_pemeriksaan_spirometri.rasio_pred,hasil_pemeriksaan_spirometri.rasio_lln,hasil_pemeriksaan_spirometri.rasio_persen,"+
+                    "hasil_pemeriksaan_spirometri.rasio_z,hasil_pemeriksaan_spirometri.rasio_post,hasil_pemeriksaan_spirometri.rasio_post_persen,"+
+                    "hasil_pemeriksaan_spirometri.rasio_perubahan,hasil_pemeriksaan_spirometri.pef_pre,hasil_pemeriksaan_spirometri.pef_pred,"+
+                    "hasil_pemeriksaan_spirometri.pef_lln,hasil_pemeriksaan_spirometri.pef_persen,hasil_pemeriksaan_spirometri.pef_z,hasil_pemeriksaan_spirometri.pef_post,"+
+                    "hasil_pemeriksaan_spirometri.pef_post_persen,hasil_pemeriksaan_spirometri.pef_perubahan,hasil_pemeriksaan_spirometri.fef2575_pre,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_pred,hasil_pemeriksaan_spirometri.fef2575_lln,hasil_pemeriksaan_spirometri.fef2575_persen,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_z,hasil_pemeriksaan_spirometri.fef2575_post,hasil_pemeriksaan_spirometri.fef2575_post_persen,"+
+                    "hasil_pemeriksaan_spirometri.fef2575_perubahan,hasil_pemeriksaan_spirometri.manuver_pre,hasil_pemeriksaan_spirometri.grade_fvc_pre,"+
+                    "hasil_pemeriksaan_spirometri.grade_fev1_pre,hasil_pemeriksaan_spirometri.manuver_post,hasil_pemeriksaan_spirometri.grade_fvc_post,"+
+                    "hasil_pemeriksaan_spirometri.grade_fev1_post,hasil_pemeriksaan_spirometri.operator,hasil_pemeriksaan_spirometri.catatan_pelaksanaan,"+
+                    "hasil_pemeriksaan_spirometri.pola_gangguan,hasil_pemeriksaan_spirometri.derajat,hasil_pemeriksaan_spirometri.respons_bronkodilator,"+
+                    "hasil_pemeriksaan_spirometri.kesimpulan,hasil_pemeriksaan_spirometri.rekomendasi from reg_periksa "+
+                    "inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                    "inner join hasil_pemeriksaan_spirometri on reg_periksa.no_rawat=hasil_pemeriksaan_spirometri.no_rawat "+
+                    "inner join dokter on hasil_pemeriksaan_spirometri.kd_dokter=dokter.kd_dokter "+
+                    "where hasil_pemeriksaan_spirometri.tanggal between ? and ? and (reg_periksa.no_rawat like ? or pasien.no_rkm_medis like ? or pasien.nm_pasien like ? or "+
+                    "hasil_pemeriksaan_spirometri.kd_dokter like ? or dokter.nm_dokter like ?) order by hasil_pemeriksaan_spirometri.tanggal"
+                );
             }
                 
             try {
@@ -3066,7 +3079,17 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
                 while(rs.next()){
                     tabMode.addRow(new Object[]{
                         rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getDate("tgl_lahir"),rs.getString("kd_dokter"),rs.getString("nm_dokter"),rs.getString("tanggal"),
-                        rs.getString("kiriman_dari"),rs.getString("diagnosa_klinis"),rs.getString("tinggi_badan"),rs.getString("berat_badan"),rs.getString("etnis"),rs.getString("persamaan_referensi"),rs.getString("suhu_ruangan"),rs.getString("tekanan_barometrik"),rs.getString("obat_dikonsumsi"),rs.getString("bronkodilator"),rs.getString("fvc_pre"),rs.getString("fvc_pred"),rs.getString("fvc_lln"),rs.getString("fvc_persen"),rs.getString("fvc_z"),rs.getString("fvc_post"),rs.getString("fvc_post_persen"),rs.getString("fvc_perubahan"),rs.getString("fev1_pre"),rs.getString("fev1_pred"),rs.getString("fev1_lln"),rs.getString("fev1_persen"),rs.getString("fev1_z"),rs.getString("fev1_post"),rs.getString("fev1_post_persen"),rs.getString("fev1_perubahan"),rs.getString("rasio_pre"),rs.getString("rasio_pred"),rs.getString("rasio_lln"),rs.getString("rasio_persen"),rs.getString("rasio_z"),rs.getString("rasio_post"),rs.getString("rasio_post_persen"),rs.getString("rasio_perubahan"),rs.getString("pef_pre"),rs.getString("pef_pred"),rs.getString("pef_lln"),rs.getString("pef_persen"),rs.getString("pef_z"),rs.getString("pef_post"),rs.getString("pef_post_persen"),rs.getString("pef_perubahan"),rs.getString("fef2575_pre"),rs.getString("fef2575_pred"),rs.getString("fef2575_lln"),rs.getString("fef2575_persen"),rs.getString("fef2575_z"),rs.getString("fef2575_post"),rs.getString("fef2575_post_persen"),rs.getString("fef2575_perubahan"),rs.getString("manuver_pre"),rs.getString("grade_fvc_pre"),rs.getString("grade_fev1_pre"),rs.getString("manuver_post"),rs.getString("grade_fvc_post"),rs.getString("grade_fev1_post"),rs.getString("operator"),rs.getString("catatan_pelaksanaan"),rs.getString("pola_gangguan"),rs.getString("derajat"),rs.getString("respons_bronkodilator"),rs.getString("kesimpulan"),rs.getString("rekomendasi")
+                        rs.getString("kiriman_dari"),rs.getString("diagnosa_klinis"),rs.getString("tinggi_badan"),rs.getString("berat_badan"),rs.getString("etnis"),rs.getString("persamaan_referensi"),
+                        rs.getString("suhu_ruangan"),rs.getString("tekanan_barometrik"),rs.getString("obat_dikonsumsi"),rs.getString("bronkodilator"),rs.getString("fvc_pre"),rs.getString("fvc_pred"),
+                        rs.getString("fvc_lln"),rs.getString("fvc_persen"),rs.getString("fvc_z"),rs.getString("fvc_post"),rs.getString("fvc_post_persen"),rs.getString("fvc_perubahan"),rs.getString("fev1_pre"),
+                        rs.getString("fev1_pred"),rs.getString("fev1_lln"),rs.getString("fev1_persen"),rs.getString("fev1_z"),rs.getString("fev1_post"),rs.getString("fev1_post_persen"),
+                        rs.getString("fev1_perubahan"),rs.getString("rasio_pre"),rs.getString("rasio_pred"),rs.getString("rasio_lln"),rs.getString("rasio_persen"),rs.getString("rasio_z"),
+                        rs.getString("rasio_post"),rs.getString("rasio_post_persen"),rs.getString("rasio_perubahan"),rs.getString("pef_pre"),rs.getString("pef_pred"),rs.getString("pef_lln"),
+                        rs.getString("pef_persen"),rs.getString("pef_z"),rs.getString("pef_post"),rs.getString("pef_post_persen"),rs.getString("pef_perubahan"),rs.getString("fef2575_pre"),
+                        rs.getString("fef2575_pred"),rs.getString("fef2575_lln"),rs.getString("fef2575_persen"),rs.getString("fef2575_z"),rs.getString("fef2575_post"),rs.getString("fef2575_post_persen"),
+                        rs.getString("fef2575_perubahan"),rs.getString("manuver_pre"),rs.getString("grade_fvc_pre"),rs.getString("grade_fev1_pre"),rs.getString("manuver_post"),rs.getString("grade_fvc_post"),
+                        rs.getString("grade_fev1_post"),rs.getString("operator"),rs.getString("catatan_pelaksanaan"),rs.getString("pola_gangguan"),rs.getString("derajat"),rs.getString("respons_bronkodilator"),
+                        rs.getString("kesimpulan"),rs.getString("rekomendasi")
                     });
                 }
             } catch (Exception e) {
@@ -3231,9 +3254,10 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps=koneksi.prepareStatement(
-                    "select reg_periksa.no_rkm_medis,pasien.nm_pasien, pasien.tgl_lahir,reg_periksa.tgl_registrasi,"+
-                    "reg_periksa.jam_reg from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                    "where reg_periksa.no_rawat=?");
+                "select reg_periksa.no_rkm_medis,pasien.nm_pasien, pasien.tgl_lahir,reg_periksa.tgl_registrasi,"+
+                "reg_periksa.jam_reg from reg_periksa inner join pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
+                "where reg_periksa.no_rawat=?"
+            );
             try {
                 ps.setString(1,TNoRw.getText());
                 rs=ps.executeQuery();
@@ -3308,9 +3332,21 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
     }
 
     private void ganti() {
-        if(Sequel.mengedittf("hasil_pemeriksaan_spirometri","no_rawat=?","no_rawat=?,tanggal=?,kd_dokter=?,diagnosa_klinis=?,kiriman_dari=?,tinggi_badan=?,berat_badan=?,etnis=?,persamaan_referensi=?,suhu_ruangan=?,tekanan_barometrik=?,obat_dikonsumsi=?,bronkodilator=?,fvc_pre=?,fvc_pred=?,fvc_lln=?,fvc_persen=?,fvc_z=?,fvc_post=?,fvc_post_persen=?,fvc_perubahan=?,fev1_pre=?,fev1_pred=?,fev1_lln=?,fev1_persen=?,fev1_z=?,fev1_post=?,fev1_post_persen=?,fev1_perubahan=?,rasio_pre=?,rasio_pred=?,rasio_lln=?,rasio_persen=?,rasio_z=?,rasio_post=?,rasio_post_persen=?,rasio_perubahan=?,pef_pre=?,pef_pred=?,pef_lln=?,pef_persen=?,pef_z=?,pef_post=?,pef_post_persen=?,pef_perubahan=?,fef2575_pre=?,fef2575_pred=?,fef2575_lln=?,fef2575_persen=?,fef2575_z=?,fef2575_post=?,fef2575_post_persen=?,fef2575_perubahan=?,manuver_pre=?,grade_fvc_pre=?,grade_fev1_pre=?,manuver_post=?,grade_fvc_post=?,grade_fev1_post=?,operator=?,catatan_pelaksanaan=?,pola_gangguan=?,derajat=?,respons_bronkodilator=?,kesimpulan=?,rekomendasi=?",67,new String[]{
-                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),KdDokter.getText(),
-                DiagnosaKlinis.getText(),KirimanDari.getText(),TinggiBadan.getText(),BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),FEV1Persen.getText(),FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),RasioPost.getText(),RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),PEFPerubahan.getText(),FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),ManuverPre.getText(),GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),GradeFEV1Post.getSelectedItem().toString(),Operator.getText(),CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),Kesimpulan.getText(),Rekomendasi.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
+        if(Sequel.mengedittf("hasil_pemeriksaan_spirometri","no_rawat=?","no_rawat=?,tanggal=?,kd_dokter=?,diagnosa_klinis=?,kiriman_dari=?,tinggi_badan=?,berat_badan=?,etnis=?,persamaan_referensi=?,suhu_ruangan=?,"+
+                "tekanan_barometrik=?,obat_dikonsumsi=?,bronkodilator=?,fvc_pre=?,fvc_pred=?,fvc_lln=?,fvc_persen=?,fvc_z=?,fvc_post=?,fvc_post_persen=?,fvc_perubahan=?,fev1_pre=?,fev1_pred=?,fev1_lln=?,fev1_persen=?,"+
+                "fev1_z=?,fev1_post=?,fev1_post_persen=?,fev1_perubahan=?,rasio_pre=?,rasio_pred=?,rasio_lln=?,rasio_persen=?,rasio_z=?,rasio_post=?,rasio_post_persen=?,rasio_perubahan=?,pef_pre=?,pef_pred=?,pef_lln=?,"+
+                "pef_persen=?,pef_z=?,pef_post=?,pef_post_persen=?,pef_perubahan=?,fef2575_pre=?,fef2575_pred=?,fef2575_lln=?,fef2575_persen=?,fef2575_z=?,fef2575_post=?,fef2575_post_persen=?,fef2575_perubahan=?,"+
+                "manuver_pre=?,grade_fvc_pre=?,grade_fev1_pre=?,manuver_post=?,grade_fvc_post=?,grade_fev1_post=?,operator=?,catatan_pelaksanaan=?,pola_gangguan=?,derajat=?,respons_bronkodilator=?,kesimpulan=?,"+
+                "rekomendasi=?",67,new String[]{
+                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),KdDokter.getText(),DiagnosaKlinis.getText(),KirimanDari.getText(),TinggiBadan.getText(),
+                    BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),
+                    FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),
+                    FEV1Persen.getText(),FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),
+                    RasioPost.getText(),RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),
+                    PEFPerubahan.getText(),FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),
+                    ManuverPre.getText(),GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),GradeFEV1Post.getSelectedItem().toString(),
+                    Operator.getText(),CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),Kesimpulan.getText(),
+                    Rekomendasi.getText(),tbObat.getValueAt(tbObat.getSelectedRow(),0).toString()
             })==true){
                 tbObat.setValueAt(TNoRw.getText(),tbObat.getSelectedRow(),0);
                 tbObat.setValueAt(TNoRM.getText(),tbObat.getSelectedRow(),1);
@@ -3458,12 +3494,25 @@ public final class RMHasilPemeriksaanSpirometri extends javax.swing.JDialog {
 
     private void simpan() {
         if(Sequel.menyimpantf("hasil_pemeriksaan_spirometri","?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?","No.Rawat",66,new String[]{
-                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),KdDokter.getText(),
-                DiagnosaKlinis.getText(),KirimanDari.getText(),TinggiBadan.getText(),BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),FEV1Persen.getText(),FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),RasioPost.getText(),RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),PEFPerubahan.getText(),FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),ManuverPre.getText(),GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),GradeFEV1Post.getSelectedItem().toString(),Operator.getText(),CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),Kesimpulan.getText(),Rekomendasi.getText()
+                TNoRw.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),KdDokter.getText(),DiagnosaKlinis.getText(),KirimanDari.getText(),TinggiBadan.getText(),
+                BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),
+                FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),FEV1Persen.getText(),
+                FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),RasioPost.getText(),
+                RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),PEFPerubahan.getText(),
+                FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),ManuverPre.getText(),
+                GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),GradeFEV1Post.getSelectedItem().toString(),Operator.getText(),
+                CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),Kesimpulan.getText(),Rekomendasi.getText()
             })==true){
                 tabMode.addRow(new Object[]{
                     TNoRw.getText(),TNoRM.getText(),TPasien.getText(),TglLahir.getText(),KdDokter.getText(),NmDokter.getText(),Valid.SetTgl(Tanggal.getSelectedItem()+"")+" "+Tanggal.getSelectedItem().toString().substring(11,19),
-                    KirimanDari.getText(),DiagnosaKlinis.getText(),TinggiBadan.getText(),BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),FEV1Persen.getText(),FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),RasioPost.getText(),RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),PEFPerubahan.getText(),FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),ManuverPre.getText(),GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),GradeFEV1Post.getSelectedItem().toString(),Operator.getText(),CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),Kesimpulan.getText(),Rekomendasi.getText()
+                    KirimanDari.getText(),DiagnosaKlinis.getText(),TinggiBadan.getText(),BeratBadan.getText(),Etnis.getSelectedItem().toString(),PersamaanReferensi.getText(),SuhuRuangan.getText(),TekananBarometrik.getText(),
+                    ObatDikonsumsi.getText(),Bronkodilator.getText(),FVCPre.getText(),FVCPred.getText(),FVCLLN.getText(),FVCPersen.getText(),FVCZ.getText(),FVCPost.getText(),FVCPostPersen.getText(),FVCPerubahan.getText(),
+                    FEV1Pre.getText(),FEV1Pred.getText(),FEV1LLN.getText(),FEV1Persen.getText(),FEV1Z.getText(),FEV1Post.getText(),FEV1PostPersen.getText(),FEV1Perubahan.getText(),RasioPre.getText(),RasioPred.getText(),
+                    RasioLLN.getText(),RasioPersen.getText(),RasioZ.getText(),RasioPost.getText(),RasioPostPersen.getText(),RasioPerubahan.getText(),PEFPre.getText(),PEFPred.getText(),PEFLLN.getText(),PEFPersen.getText(),
+                    PEFZ.getText(),PEFPost.getText(),PEFPostPersen.getText(),PEFPerubahan.getText(),FEF2575Pre.getText(),FEF2575Pred.getText(),FEF2575LLN.getText(),FEF2575Persen.getText(),FEF2575Z.getText(),FEF2575Post.getText(),
+                    FEF2575PostPersen.getText(),FEF2575Perubahan.getText(),ManuverPre.getText(),GradeFVCPre.getSelectedItem().toString(),GradeFEV1Pre.getSelectedItem().toString(),ManuverPost.getText(),GradeFVCPost.getSelectedItem().toString(),
+                    GradeFEV1Post.getSelectedItem().toString(),Operator.getText(),CatatanPelaksanaan.getText(),PolaGangguan.getSelectedItem().toString(),Derajat.getSelectedItem().toString(),ResponsBronkodilator.getSelectedItem().toString(),
+                    Kesimpulan.getText(),Rekomendasi.getText()
                 });
                 emptTeks();
                 LCount.setText(""+tabMode.getRowCount());

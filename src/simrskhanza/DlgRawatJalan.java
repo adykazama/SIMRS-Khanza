@@ -115,6 +115,7 @@ import rekammedis.RMHasilPemeriksaanEcho;
 import rekammedis.RMHasilPemeriksaanEchoPediatrik;
 import rekammedis.RMHasilPemeriksaanOCT;
 import rekammedis.RMHasilPemeriksaanSlitLamp;
+import rekammedis.RMHasilPemeriksaanSpirometri;
 import rekammedis.RMHasilPemeriksaanTreadmill;
 import rekammedis.RMHasilPemeriksaanUSG;
 import rekammedis.RMHasilPemeriksaanUSGAbdomen;
@@ -10734,6 +10735,23 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
     
+    private void BtnHasilPemeriksaanSpirometriActionPerformed(java.awt.event.ActionEvent evt) {                                                       
+        if(TPasien.getText().trim().equals("")||TNoRw.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
+            TCari.requestFocus();
+        }else{
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            RMHasilPemeriksaanSpirometri form=new RMHasilPemeriksaanSpirometri(null,false);
+            form.isCek();
+            form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            form.emptTeks();
+            form.setNoRm(TNoRw.getText(),DTPCari2.getDate());
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -11096,7 +11114,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                           BtnChecklistKriteriaMasukNICU,BtnChecklistKriteriaMasukPICU,BtnSkriningInstrumenMentalEmosional,BtnSkriningInstrumenAMT,BtnSkriningPneumoniaSeverityIndex,BtnAwalMedisJantung,BtnAwalMedisUrologi,
                           BtnHasilPemeriksaanTreadmill,BtnHasilPemeriksaanECHOPediatrik,BtnSkriningCURB65,BtnSkriningGiziKehamilan,BtnResepIterasiBPJS,BtnPermintaanKonsultasiPerawat,BtnCatatanObservasiRuangOperasi,
                           BtnHasilPemeriksaanUSGAbdomen,BtnIntervensiNyeriFarmakologi,BtnIntervensiNyeriNonFarmakologi,BtnChecklistKriteriaMasukIsolasi,BtnSkriningTOLAC,BtnAdmisiSkoringTOLAC,BtnMonitoringTolac,
-                          BtnHasilPersalinanTOLAC,BtnLaporanReaksiTranfusi,BtnPenilaianGRACEScore,BtnPenilaianBISHOPScore,BtnProfilRawatJalan,BtnHasilPemeriksaanUSGTestis,BtnHasilPemeriksaanUSGKepala,BtnHasilPemeriksaanUSGMammae;   
+                          BtnHasilPersalinanTOLAC,BtnLaporanReaksiTranfusi,BtnPenilaianGRACEScore,BtnPenilaianBISHOPScore,BtnProfilRawatJalan,BtnHasilPemeriksaanUSGTestis,BtnHasilPemeriksaanUSGKepala,BtnHasilPemeriksaanUSGMammae,
+                          BtnHasilPemeriksaanSpirometri;   
     private widget.PopupMenu PopupSOAP,PopupPemeriksaan;
     private widget.MenuItem MnSOAPDokter,MnSOAPPetugas,MnCopySOAP,MnPasteSOAP;
     
@@ -11913,6 +11932,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
         BtnHasilPemeriksaanUSGMammae.setVisible(akses.gethasil_usg_mammae()); 
         if(akses.gethasil_usg_mammae()==true){
+            tinggi=tinggi+24;
+        }
+        BtnHasilPemeriksaanSpirometri.setVisible(akses.gethasil_spirometri()); 
+        if(akses.gethasil_spirometri()==true){
             tinggi=tinggi+24;
         }
         BtnHasilEndoskopiFaringLaring.setVisible(akses.gethasil_endoskopi_faring_laring()); 
@@ -13555,6 +13578,19 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         BtnHasilPemeriksaanUSGMammae.setRoundRect(false);
         BtnHasilPemeriksaanUSGMammae.addActionListener(this::BtnHasilPemeriksaanUSGMammaeActionPerformed);
         
+        BtnHasilPemeriksaanSpirometri = new widget.Button();
+        BtnHasilPemeriksaanSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
+        BtnHasilPemeriksaanSpirometri.setText("Hasil Pemeriksaan Spirometri");
+        BtnHasilPemeriksaanSpirometri.setFocusPainted(false);
+        BtnHasilPemeriksaanSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11));
+        BtnHasilPemeriksaanSpirometri.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilPemeriksaanSpirometri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHasilPemeriksaanSpirometri.setMargin(new java.awt.Insets(1, 1, 1, 1));
+        BtnHasilPemeriksaanSpirometri.setName("BtnHasilPemeriksaanSpirometri");
+        BtnHasilPemeriksaanSpirometri.setPreferredSize(new java.awt.Dimension(190, 23));
+        BtnHasilPemeriksaanSpirometri.setRoundRect(false);
+        BtnHasilPemeriksaanSpirometri.addActionListener(this::BtnHasilPemeriksaanSpirometriActionPerformed);
+        
         BtnHasilPemeriksaanEKG = new widget.Button();
         BtnHasilPemeriksaanEKG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/item.png")));
         BtnHasilPemeriksaanEKG.setText("Hasil Pemeriksaan EKG");
@@ -14734,6 +14770,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         FormMenu.add(BtnHasilPemeriksaanSlitLamp);
         FormMenu.add(BtnHasilPemeriksaanOCT);
         FormMenu.add(BtnHasilPemeriksaanTreadmill);
+        FormMenu.add(BtnHasilPemeriksaanSpirometri);
         FormMenu.add(BtnHasilEndoskopiFaringLaring);
         FormMenu.add(BtnHasilEndoskopiHidung);
         FormMenu.add(BtnHasilEndoskopiTelinga);

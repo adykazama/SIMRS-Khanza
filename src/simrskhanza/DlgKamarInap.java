@@ -216,6 +216,7 @@ import rekammedis.RMDataIntervensiNyeriFarmakologi;
 import rekammedis.RMDataIntervensiNyeriNonFarmakologi;
 import rekammedis.RMDataMonitoringTOLAC;
 import rekammedis.RMDataSkriningGiziKehamilan;
+import rekammedis.RMHasilPemeriksaanSpirometri;
 import rekammedis.RMHasilPemeriksaanUSGAbdomen;
 import rekammedis.RMHasilPemeriksaanUSGKepala;
 import rekammedis.RMHasilPemeriksaanUSGMammae;
@@ -19742,6 +19743,29 @@ public class DlgKamarInap extends javax.swing.JDialog {
         }
     }
     
+    private void MnHasilPemeriksaanSpirometriActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+        if(tabMode.getRowCount()==0){
+            JOptionPane.showMessageDialog(null,"Maaf, table masih kosong...!!!!");
+            TCari.requestFocus();
+        }else{
+            if(tbKamIn.getSelectedRow()>-1){
+                if(tbKamIn.getValueAt(tbKamIn.getSelectedRow(),0).toString().equals("")){
+                    JOptionPane.showMessageDialog(null,"Maaf, Silahkan anda pilih dulu pasien...!!!");
+                }else{
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    RMHasilPemeriksaanSpirometri form=new RMHasilPemeriksaanSpirometri(null,false);
+                    form.isCek();
+                    form.setSize(internalFrame1.getWidth()-20,internalFrame1.getHeight()-20);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    form.emptTeks();
+                    form.setNoRm(norawat.getText(),DTPCari2.getDate());
+                    this.setCursor(Cursor.getDefaultCursor());
+                }
+            }
+        }
+    }
+    
     /**
     * @param args the command line arguments
     */
@@ -20141,7 +20165,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                   MnCheckListKriteriaMasukPICU,MnCheckListKriteriaKeluarPICU,MnHasilPemeriksaanTreadmill,MnHasilPemeriksaanECHOPediatrik,MnPenilaianAwalMedisJantung,MnSkriningGiziKehamilan,MnSerahTerimaBarangAnggotaTubuh,MnPermintaanKonsultasiPerawat,
                                   MnPersetujuanBimbinganRohani,MnPermintaanPerlindunganDariKekerasan,MnSuratPermohonanPrivasi,MnSuratPermintaanSecondOpinion,MnSuratPenolakanResusitasi,MnCatatanObservasiRuangOperasi,MnHasilPemeriksaanUSGAbdomen,MnIntervensiNyeriFarmakologi,
                                   MnIntervensiNyeriNonFarmakologi,MnPengajuanCutiPerawatanPasien,MnCheckListKriteriaMasukIsolasi,MnCheckListKriteriaKeluarIsolasi,MnAdmisiSkoringTOLAC,MnMonitoringTOLAC,MnHasilPersalinanTOLAC,MnLaporanReaksiTranfusi,MnPenilaianBISHOPScore,
-                                  MnHasilPemeriksaanUSGTestis,MnHasilPemeriksaanUSGKepala,MnHasilPemeriksaanUSGMammae;
+                                  MnHasilPemeriksaanUSGTestis,MnHasilPemeriksaanUSGKepala,MnHasilPemeriksaanUSGMammae,MnHasilPemeriksaanSpirometri;
     private widget.Menu MnHasilUSG,MnHasilEndoskopi,MnCatatanObservasi,MnEdukasi,MnSuratPersetujuan,MnHasilPemeriksaanAlat;
     
     private void tampil() {
@@ -20649,6 +20673,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanUSGTestis.setEnabled(akses.gethasil_usg_testis());
         MnHasilPemeriksaanUSGKepala.setEnabled(akses.gethasil_usg_kepala());
         MnHasilPemeriksaanUSGMammae.setEnabled(akses.gethasil_usg_mammae());
+        MnHasilPemeriksaanSpirometri.setEnabled(akses.gethasil_spirometri());
         MnHasilEndoskopiFaringLaring.setEnabled(akses.gethasil_endoskopi_faring_laring());
         MnHasilEndoskopiHidung.setEnabled(akses.gethasil_endoskopi_hidung());
         MnHasilEndoskopiTelinga.setEnabled(akses.gethasil_endoskopi_telinga());
@@ -21659,6 +21684,18 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanUSGMammae.setPreferredSize(new java.awt.Dimension(170, 26));
         MnHasilPemeriksaanUSGMammae.addActionListener(this::MnHasilPemeriksaanUSGMammaeActionPerformed);
         
+        MnHasilPemeriksaanSpirometri = new widget.MenuItem();
+        MnHasilPemeriksaanSpirometri.setBackground(new java.awt.Color(255, 255, 254));
+        MnHasilPemeriksaanSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); 
+        MnHasilPemeriksaanSpirometri.setForeground(new java.awt.Color(50, 50, 50));
+        MnHasilPemeriksaanSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); 
+        MnHasilPemeriksaanSpirometri.setText("Hasil Pemeriksaan Spirometri");
+        MnHasilPemeriksaanSpirometri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanSpirometri.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanSpirometri.setName("MnHasilPemeriksaanSpirometri");
+        MnHasilPemeriksaanSpirometri.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHasilPemeriksaanSpirometri.addActionListener(this::MnHasilPemeriksaanSpirometriActionPerformed);
+        
         MnHasilUSG = new widget.Menu();
         MnHasilUSG.setBackground(new java.awt.Color(255, 255, 254));
         MnHasilUSG.setForeground(new java.awt.Color(50, 50, 50));
@@ -21794,6 +21831,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanAlat.add(MnHasilPemeriksaanSlitLamp);
         MnHasilPemeriksaanAlat.add(MnHasilPemeriksaanOCT);
         MnHasilPemeriksaanAlat.add(MnHasilPemeriksaanTreadmill);
+        MnHasilPemeriksaanAlat.add(MnHasilPemeriksaanSpirometri);
         
         MnPenilaianAwal.add(MnPenilaianAwalKeperawatanRanap);
         MnPenilaianAwal.add(MnPenilaianAwalKeperawatanKebidanan);

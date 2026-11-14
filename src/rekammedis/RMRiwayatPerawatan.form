@@ -886,7 +886,7 @@
                             </Property>
                             <Property name="name" type="java.lang.String" value="FormMenu" noResource="true"/>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[255, 4975]"/>
+                              <Dimension value="[255, 4995]"/>
                             </Property>
                           </Properties>
 
@@ -2422,6 +2422,17 @@
                                 <Property name="text" type="java.lang.String" value="Hasil Pemeriksaan Endoskopi Telinga"/>
                                 <Property name="horizontalAlignment" type="int" value="2"/>
                                 <Property name="name" type="java.lang.String" value="chkHasilPemeriksaanEndoskopiTelinga" noResource="true"/>
+                                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                                  <Dimension value="[245, 22]"/>
+                                </Property>
+                              </Properties>
+                            </Component>
+                            <Component class="widget.CekBox" name="chkHasilPemeriksaanSpirometri">
+                              <Properties>
+                                <Property name="selected" type="boolean" value="true"/>
+                                <Property name="text" type="java.lang.String" value="Hasil Pemeriksaan Spirometri"/>
+                                <Property name="horizontalAlignment" type="int" value="2"/>
+                                <Property name="name" type="java.lang.String" value="chkHasilPemeriksaanSpirometri" noResource="true"/>
                                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                                   <Dimension value="[245, 22]"/>
                                 </Property>
